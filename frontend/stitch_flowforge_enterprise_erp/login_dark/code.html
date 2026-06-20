@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | FlowForge ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fff7f9",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#310e2b",
+                    "on-background": "#1e1b1d",
+                    "surface": "#fff7f9",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e9e0e3",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#ffd7f1",
+                    "on-primary-fixed": "#2f1029",
+                    "on-secondary-container": "#7b4f70",
+                    "surface-container-highest": "#e9e0e3",
+                    "surface-container-high": "#efe6e9",
+                    "on-tertiary-fixed-variant": "#3b4c24",
+                    "inverse-primary": "#e9b8d9",
+                    "tertiary-fixed-dim": "#b9ce9a",
+                    "tertiary-container": "#4b5d33",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#5f3b56",
+                    "on-primary-container": "#f0bfe0",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#e0d8da",
+                    "surface-tint": "#79526f",
+                    "on-surface": "#1e1b1d",
+                    "inverse-surface": "#342f31",
+                    "surface-container": "#f4ecee",
+                    "primary-fixed-dim": "#e9b8d9",
+                    "on-secondary-fixed-variant": "#623958",
+                    "primary-container": "#714b67",
+                    "on-tertiary-fixed": "#112000",
+                    "surface-container-low": "#faf1f4",
+                    "secondary-container": "#fec7ed",
+                    "on-surface-variant": "#4e444a",
+                    "on-tertiary-container": "#c0d5a0",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#34451e",
+                    "secondary-fixed": "#ffd7f1",
+                    "secondary-fixed-dim": "#edb6dc",
+                    "surface-bright": "#fff7f9",
+                    "secondary": "#7c5071",
+                    "tertiary-fixed": "#d5eab4",
+                    "outline": "#80747a",
+                    "primary": "#57344f",
+                    "inverse-on-surface": "#f7eef1",
+                    "outline-variant": "#d1c3ca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "0.5rem",
+                    "lg": "1.5rem",
+                    "xl": "2.5rem",
+                    "margin": "2rem",
+                    "xs": "0.25rem",
+                    "base": "4px",
+                    "max-width": "1440px",
+                    "md": "1rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "button": ["Inter"],
+                    "display": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "caption": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Dark Mode Overlap */
+        }
+        .glass-panel {
+            background: rgba(30, 27, 29, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(209, 195, 202, 0.1);
+        }
+        .animate-subtle-glow {
+            animation: glow 8s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.1); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-on-background text-on-surface overflow-hidden">
+<!-- Atmospheric Background -->
+<div class="fixed inset-0 z-0">
+<!-- The user prompt mentioned background features a subtle glassmorphism effect -->
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px] animate-subtle-glow"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-secondary/10 blur-[120px] animate-subtle-glow" style="animation-delay: -4s;"></div>
+<!-- Background Image for Depth -->
+<div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" data-alt="An abstract, ultra-modern dark industrial landscape with subtle geometric data flow lines. The lighting is low-key, featuring soft deep purple and muted charcoal tones to create a premium enterprise atmosphere. The visual style is inspired by minimalist architectural photography with clean lines and high-contrast shadow areas, emphasizing professional reliability and futuristic technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtqpxz5NvYvMD57bCNbXozecJYGn3En3WCRwKq6nNR1nxjE9ZQqyAppQ5phtPywiqxvpv9lXTaRrcp9XkixxuhXtG-5Er2rmUoWIy8XoVUUyzt6mr7O8EYacmCr9qhoV0Irli0txOuD0fkuhg8h75hq2g18hAX65qqJ4M-nGCQhaVKA4vq5SJKMG1hbQmLADszXpsaiKWONiNbN6fvUX_8CL0cAx3bwTuXZZDYJXGnCBsF4KSec5eiKQxjZOumtXZycCwZJ_q1iWw')">
+</div>
+</div>
+<!-- Main Content Shell -->
+<main class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+<!-- Login Card -->
+<div class="w-full max-w-md">
+<!-- Branding -->
+<div class="flex flex-col items-center mb-10">
+<div class="mb-4 p-3 bg-primary-container/20 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-primary-fixed text-[32px]">
+                        rocket_launch
+                    </span>
+</div>
+<h1 class="font-h1 text-h1 text-on-primary tracking-tight">FlowForge</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 text-center opacity-80">
+                    Precision operations for the modern enterprise.
+                </p>
+</div>
+<!-- Login Form Container -->
+<div class="glass-panel p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+<!-- Subtle Top Highlight -->
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+<form action="#" class="space-y-6" method="POST" onsubmit="return false;">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant/80 uppercase" for="email">
+                            Corporate Email
+                        </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/60 text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-surface-container-highest/10 border border-outline-variant/20 rounded-xl text-on-primary placeholder-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-on-surface-variant/80 uppercase" for="password">
+                                Security Key
+                            </label>
+<a class="text-[12px] font-medium text-primary-fixed hover:text-primary-container transition-colors" href="#">
+                                Forgot password?
+                            </a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant/60 text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-12 py-3 bg-surface-container-highest/10 border border-outline-variant/20 rounded-xl text-on-primary placeholder-on-surface-variant/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant/60 hover:text-on-primary" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Options -->
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary focus:ring-primary border-outline-variant/30 rounded bg-on-background" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface-variant" for="remember-me">
+                            Keep session active
+                        </label>
+</div>
+<!-- Login Button -->
+<button class="w-full flex justify-center items-center gap-2 py-3.5 px-4 bg-primary text-on-primary font-button text-button rounded-xl hover:bg-primary/90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20" type="submit">
+                        Access Dashboard
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- SS0 / Alternate Sign In -->
+<div class="mt-8">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/10"></div>
+</div>
+<div class="relative flex justify-center text-xs">
+<span class="px-2 bg-transparent text-on-surface-variant/60 font-medium">Or continue with</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center py-2.5 border border-outline-variant/20 rounded-xl hover:bg-surface-container-highest/10 transition-colors">
+<img alt="Google" class="w-5 h-5 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMFSR6snTyja0TfImPE7K0F7igvIDJBJP1G2yrzuqQAQsztRc3iAYjzbNeLCqRtC_AOPZOrBnCPgjUI1NgSKaGN2kV8t4ZtitAl-d7LhcQ4yEFSyHKQTGUkPY-Dcqpw72oftzS4BPFk59tqPKnweagUr1SOfop6C6fVwV5UoAA1f-QZN1cI6lZn_6RV_HvNYQYsuHDopVfiUx_piEqN1Xxujx8Q62WJJd87uDcZBdADnUYLsKjy-PHX7WUiDqBDL6Ic20J9jBGJU0"/>
+<span class="text-[13px] font-medium text-on-primary">Google SSO</span>
+</button>
+<button class="flex items-center justify-center py-2.5 border border-outline-variant/20 rounded-xl hover:bg-surface-container-highest/10 transition-colors">
+<span class="material-symbols-outlined text-[20px] mr-2">fingerprint</span>
+<span class="text-[13px] font-medium text-on-primary">Biometric</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<footer class="mt-8 text-center">
+<p class="font-caption text-caption text-on-surface-variant/60">
+                    New to FlowForge? <a class="text-primary-fixed hover:underline" href="#">Request enterprise access</a>
+</p>
+<div class="mt-6 flex justify-center space-x-4 opacity-40 hover:opacity-80 transition-opacity">
+<a class="text-[11px] font-medium text-on-surface uppercase tracking-widest" href="#">Security</a>
+<span class="text-on-surface-variant/20">•</span>
+<a class="text-[11px] font-medium text-on-surface uppercase tracking-widest" href="#">Privacy</a>
+<span class="text-on-surface-variant/20">•</span>
+<a class="text-[11px] font-medium text-on-surface uppercase tracking-widest" href="#">Support</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 20;
+            const y = (e.clientY / window.innerHeight) * 20;
+            const glows = document.querySelectorAll('.animate-subtle-glow');
+            glows.forEach((glow, index) => {
+                const multiplier = index === 0 ? 1 : -1;
+                glow.style.transform = `translate(${x * multiplier}px, ${y * multiplier}px)`;
+            });
+        });
+
+        // Toggle Password Visibility
+        const togglePass = document.querySelector('button[type="button"]');
+        const passInput = document.querySelector('input[type="password"]');
+        if (togglePass && passInput) {
+            togglePass.addEventListener('click', () => {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                togglePass.innerHTML = `<span class="material-symbols-outlined text-[20px]">${isPass ? 'visibility_off' : 'visibility'}</span>`;
+            });
+        }
+    </script>
+</body></html>

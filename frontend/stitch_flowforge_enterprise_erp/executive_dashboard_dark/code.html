@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlowForge ERP | Executive Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Use Provided Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "background": "#fff7f9",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed": "#310e2b",
+                "on-background": "#1e1b1d",
+                "surface": "#fff7f9",
+                "on-error": "#ffffff",
+                "surface-variant": "#e9e0e3",
+                "error-container": "#ffdad6",
+                "primary-fixed": "#ffd7f1",
+                "on-primary-fixed": "#2f1029",
+                "on-secondary-container": "#7b4f70",
+                "surface-container-highest": "#e9e0e3",
+                "surface-container-high": "#efe6e9",
+                "on-tertiary-fixed-variant": "#3b4c24",
+                "inverse-primary": "#e9b8d9",
+                "tertiary-fixed-dim": "#b9ce9a",
+                "tertiary-container": "#4b5d33",
+                "on-secondary": "#ffffff",
+                "error": "#ba1a1a",
+                "on-primary-fixed-variant": "#5f3b56",
+                "on-primary-container": "#f0bfe0",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface-dim": "#e0d8da",
+                "surface-tint": "#79526f",
+                "on-surface": "#1e1b1d",
+                "inverse-surface": "#342f31",
+                "surface-container": "#f4ecee",
+                "primary-fixed-dim": "#e9b8d9",
+                "on-secondary-fixed-variant": "#623958",
+                "primary-container": "#714b67",
+                "on-tertiary-fixed": "#112000",
+                "surface-container-low": "#faf1f4",
+                "secondary-container": "#fec7ed",
+                "on-surface-variant": "#4e444a",
+                "on-tertiary-container": "#c0d5a0",
+                "surface-container-lowest": "#ffffff",
+                "tertiary": "#34451e",
+                "secondary-fixed": "#ffd7f1",
+                "secondary-fixed-dim": "#edb6dc",
+                "surface-bright": "#fff7f9",
+                "secondary": "#7c5071",
+                "tertiary-fixed": "#d5eab4",
+                "outline": "#80747a",
+                "primary": "#57344f",
+                "inverse-on-surface": "#f7eef1",
+                "outline-variant": "#d1c3ca"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "sm": "0.5rem",
+                "lg": "1.5rem",
+                "xl": "2.5rem",
+                "margin": "2rem",
+                "xs": "0.25rem",
+                "base": "4px",
+                "max-width": "1440px",
+                "md": "1rem",
+                "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                "label-caps": ["Inter"],
+                "button": ["Inter"],
+                "display": ["Inter"],
+                "h4": ["Inter"],
+                "body-sm": ["Inter"],
+                "caption": ["Inter"],
+                "h2": ["Inter"],
+                "h3": ["Inter"],
+                "h1-mobile": ["Inter"],
+                "h1": ["Inter"],
+                "body": ["Inter"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "caption": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                "h1-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "h1": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #1e1b1d; /* Overriding for true Dark Mode depth */
+            color: #f7eef1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(47, 16, 41, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(240, 191, 224, 0.1);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .flow-line {
+            stroke-dasharray: 10;
+            animation: flow 20s linear infinite;
+        }
+
+        @keyframes flow {
+            from { stroke-dashoffset: 200; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .active-dot {
+            background-color: #ffd7f1;
+            width: 2rem;
+        }
+
+        /* Material Symbols Fill override */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-inverse-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation (Authority Source: TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-inverse-surface/80 backdrop-blur-md border-b border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between px-margin py-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-fixed text-h3">menu</span>
+<h1 class="font-h2 text-h2 font-bold text-primary-fixed">FlowForge</h1>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="font-label-caps text-label-caps text-primary-fixed font-bold" href="#">Dashboard</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Inventory</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Mfg</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Procure</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="p-2 rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface">search</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-primary-fixed/30 p-0.5">
+<img class="w-full h-64 h-full w-full object-cover rounded-full" data-alt="A professional headshot of a corporate executive in high-end office attire, wearing a sleek blazer. The background is a softly blurred modern office environment with warm, sophisticated lighting and a palette of deep plums and creams, matching a luxury SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZoxodV3RzJ21o4SHhFXlmfbaXj9C6c5TiWJYOZ-1hKqV-yRYJfmipJig3D64iqVpLJxqYQI2bZPuWQYydyBc3HktgcC7tACy7fY3qh3EDnebcolLQOVhoab63IxNQLBvaPsUXarBHGO4HqSdN-iXZ22b58Ja8zVDH8zsxIndwTKvmT41IjPA3z7_9BrBrjzxpVjv9-QXoe1aq3LxqMeHN8PeQ2p0VtsHzZ665a9ADWq4Mz8pb_DbH43nst5iRsNRedRZ81LmRRH8"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 max-w-max-width mx-auto px-margin space-y-xl">
+<!-- SECTION 1: Premium Hero Carousel -->
+<section class="relative group h-[500px] rounded-xl overflow-hidden shadow-xl" id="hero-carousel">
+<div class="carousel-track h-full" id="track">
+<!-- Slide 1: Business Overview -->
+<div class="min-w-full h-full relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A wide cinematic shot of a high-tech corporate headquarters at dusk. The building is made of glass and steel, glowing with warm internal lights. The color palette is dominated by deep midnight purples and soft rose highlights, conveying a mood of global dominance and sophisticated operational control." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArbiVptzruGi6DZpvLrSsbkMoQ0eYID81KAbxr4lwkjszfQWpfpXWVj8WGqUe62XpOrT0mEsom9TMTZ0q2ex2bddnHJlyWqGgKgjHorfb8Ndt0Wi3rgOYs3gR1Ndv5Uc-ZdfpCEHjQzoizN2R3FDLhk-L4WFvYmabdbhx_fM18-ohB4iNsYhr09rhTJC25YhFTHqOcF0e_C6h8gJ5IQW0JqATLXHaA9TlRRozc1L7cKxxlSEXM8lyFcuTjSmr7SSVJKdpoykGP6W0')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/60 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center px-12 md:px-24 space-y-lg max-w-3xl">
+<span class="font-label-caps text-label-caps text-primary-fixed-dim bg-primary/30 px-3 py-1 rounded-full w-fit">Executive View</span>
+<h2 class="font-display text-display text-on-primary">Real-time Global Connectivity.</h2>
+<p class="font-body text-body text-on-surface-variant/80">FlowForge orchestrates every movement within your enterprise, synchronizing thousands of data points into a single executive stream.</p>
+<div class="flex gap-md pt-4">
+<button class="bg-primary-container text-on-primary px-lg py-md rounded-lg font-button text-button active:scale-95 transition-transform">Explore Analytics</button>
+<button class="glass-panel text-on-primary px-lg py-md rounded-lg font-button text-button hover:bg-white/10 transition-colors">Download Report</button>
+</div>
+</div>
+</div>
+<!-- Slide 2: Inventory Intel -->
+<div class="min-w-full h-full relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A futuristic automated warehouse with sleek robotic arms moving high-precision components. The lighting is cold and clinical, but with magenta and violet laser highlights that create a high-tech, data-driven atmosphere. The focus is on precision, speed, and massive scale." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQsPPN-36qrMH_T6DfqdkQTGnAcb7sW2R-3ljfcqkEGwEg0MofdorhYfet5MabuS9_ZHFPc2Ns0wgm73TCXgV_haaYALLBbt6jgAcxoHMsWiG0VJKQw0revE2NqLkAjPQ6XWsJZK6rrfJAJsorYTCVx6OJ76mAMjHt7oxTEJuv_iZAxZzMirGzQ5M1jEej60FVX77mXBpv_OfK3ISFXZSd-SiKQQuFcHg8qb2VeHKCnEeOuJWrwdXavbtpEYTkDEAyVNaXrG5YjP8')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/60 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center px-12 md:px-24 space-y-lg max-w-3xl">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim bg-tertiary/30 px-3 py-1 rounded-full w-fit">Inventory Intel</span>
+<h2 class="font-display text-display text-on-primary">Predictive Stock Orchestration.</h2>
+<p class="font-body text-body text-on-surface-variant/80">Eliminate stock-outs and excess with AI-driven demand forecasting that adapts to market volatility in microseconds.</p>
+<div class="flex gap-md pt-4">
+<button class="bg-primary-container text-on-primary px-lg py-md rounded-lg font-button text-button active:scale-95 transition-transform">View Stock Map</button>
+</div>
+</div>
+</div>
+<!-- Slide 3: Mfg Intel -->
+<div class="min-w-full h-full relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A clean-room manufacturing facility where microscopic electronics are being assembled by precise machinery. The aesthetic is ultra-modern, featuring bright white surfaces, glowing purple data displays, and a sense of absolute efficiency and silence. Low angle shot emphasizing technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBi2TPjOiKNJeGXTzkM1zVK1vD_KYHiqtTfFEBVGY24D6LSDEUd6MDhwBFhD0krSJUAdNASt3HnWi9F3PEbH4jrf4ACy6XYQrzDZNOSfXR3sohWaDvwGS56nMRg0aML291oACyuoKcsF89YzTVMzesqR0pYCEb68qMswaEPHFGf70ZQtb56oQVpeW4Oft6xiOx0hFCezdXFywkh1FNvtdgF0PNJrEJc6YO6C_3h54l9gbURYK2u_UxzbHuqDFIEzOpLAGazU9F5b_4')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/60 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-center px-12 md:px-24 space-y-lg max-w-3xl">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary/30 px-3 py-1 rounded-full w-fit">Mfg Intel</span>
+<h2 class="font-display text-display text-on-primary">Autonomous Shop Floors.</h2>
+<p class="font-body text-body text-on-surface-variant/80">Monitor OEE and production cycles with extreme granularity. Identify bottlenecks before they impact your delivery commitments.</p>
+</div>
+</div>
+</div>
+<!-- Controls -->
+<div class="absolute bottom-10 left-12 md:left-24 flex items-center gap-4">
+<div class="flex gap-2" id="carousel-dots">
+<div class="w-2 h-2 rounded-full bg-white/20 active-dot cursor-pointer transition-all duration-300" onclick="goToSlide(0)"></div>
+<div class="w-2 h-2 rounded-full bg-white/20 cursor-pointer transition-all duration-300" onclick="goToSlide(1)"></div>
+<div class="w-2 h-2 rounded-full bg-white/20 cursor-pointer transition-all duration-300" onclick="goToSlide(2)"></div>
+</div>
+</div>
+<!-- Interactive Widgets Overlaid -->
+<div class="absolute top-12 right-12 hidden lg:block space-y-md w-72">
+<div class="glass-panel p-md rounded-xl floating">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-label-caps text-primary-fixed">Active Flows</span>
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="text-h3 font-h3 text-on-primary">1,482</div>
+<div class="w-full bg-white/10 h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-3/4 shimmer"></div>
+</div>
+</div>
+<div class="glass-panel p-md rounded-xl floating" style="animation-delay: 1s">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-label-caps text-tertiary-fixed">System Health</span>
+<span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+</div>
+<div class="text-h3 font-h3 text-on-primary">99.98%</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Digital Twin Hero -->
+<section class="space-y-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-h1 text-h1 text-on-primary">Operational Digital Twin</h2>
+<p class="font-body text-body text-on-surface-variant">Continuous simulation of your supply chain ecosystem.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface-container-highest/20 p-2 rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">sync</span>
+</button>
+<button class="bg-surface-container-highest/20 p-2 rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</div>
+</div>
+<!-- The Flow Map Visualization -->
+<div class="glass-panel rounded-2xl p-xl min-h-[600px] relative overflow-hidden flex flex-col justify-center">
+<!-- Background Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg height="100%" width="100%">
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Central Flow Visualizer -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 items-center">
+<!-- Phase 1: Inputs -->
+<div class="space-y-xl">
+<div class="glass-panel p-lg rounded-xl border-l-4 border-primary-fixed transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-fixed bg-primary/40 p-2 rounded-lg">shopping_cart</span>
+<span class="font-h4 text-h4 text-on-primary">Customer Orders</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-h3 font-h3">1,240</span>
+<span class="text-tertiary-fixed text-caption font-caption flex items-center">+12% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+</div>
+<div class="glass-panel p-lg rounded-xl border-l-4 border-secondary-fixed transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary-fixed bg-secondary/40 p-2 rounded-lg">inventory_2</span>
+<span class="font-h4 text-h4 text-on-primary">Inventory Health</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-h3 font-h3">94.2%</span>
+<span class="text-on-surface-variant text-caption font-caption">Optimal</span>
+</div>
+</div>
+</div>
+<!-- Visual Flow Center (Desktop Only) -->
+<div class="hidden md:block relative h-full">
+<svg class="w-full h-full min-h-[400px]" viewbox="0 0 200 400">
+<!-- Paths -->
+<path class="flow-line" d="M 20 100 Q 100 100 100 200" fill="none" stroke="rgba(240,191,224,0.2)" stroke-width="2"></path>
+<path class="flow-line" d="M 20 300 Q 100 300 100 200" fill="none" stroke="rgba(237,182,220,0.2)" stroke-width="2"></path>
+<path class="flow-line" d="M 100 200 Q 100 200 180 100" fill="none" stroke="rgba(185,206,154,0.2)" stroke-width="2"></path>
+<path class="flow-line" d="M 100 200 Q 100 200 180 300" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"></path>
+<!-- Central Node -->
+<circle class="animate-pulse" cx="100" cy="200" fill="#714b67" r="12"></circle>
+<circle class="animate-ping opacity-30" cx="100" cy="200" fill="none" r="20" stroke="#714b67" stroke-width="1"></circle>
+</svg>
+</div>
+<!-- Phase 2: Execution -->
+<div class="space-y-xl">
+<div class="glass-panel p-lg rounded-xl border-l-4 border-tertiary-fixed transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-tertiary-fixed bg-tertiary/40 p-2 rounded-lg">factory</span>
+<span class="font-h4 text-h4 text-on-primary">Mfg Efficiency</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-h3 font-h3">88.5%</span>
+<span class="text-tertiary-fixed text-caption font-caption">Target: 90%</span>
+</div>
+</div>
+<div class="glass-panel p-lg rounded-xl border-l-4 border-outline transition-transform hover:-translate-y-1 cursor-pointer">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant bg-surface-container-highest/40 p-2 rounded-lg">local_shipping</span>
+<span class="font-h4 text-h4 text-on-primary">Delivery Success</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-h3 font-h3">99.1%</span>
+<span class="text-tertiary-fixed text-caption font-caption flex items-center">In Transit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Summary (Bento Style) -->
+<div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-md relative z-10">
+<div class="bg-surface-container-lowest/5 p-md rounded-lg">
+<div class="text-on-surface-variant font-label-caps text-label-caps mb-1">Procurement Risk</div>
+<div class="text-h4 font-h4 text-on-primary">Low</div>
+<div class="w-full bg-white/5 h-1 mt-2 rounded-full"><div class="bg-tertiary-fixed h-full w-1/4"></div></div>
+</div>
+<div class="bg-surface-container-lowest/5 p-md rounded-lg">
+<div class="text-on-surface-variant font-label-caps text-label-caps mb-1">Vendor Reliability</div>
+<div class="text-h4 font-h4 text-on-primary">98.4%</div>
+<div class="w-full bg-white/5 h-1 mt-2 rounded-full"><div class="bg-primary-fixed h-full w-11/12"></div></div>
+</div>
+<div class="bg-surface-container-lowest/5 p-md rounded-lg">
+<div class="text-on-surface-variant font-label-caps text-label-caps mb-1">Revenue Growth</div>
+<div class="text-h4 font-h4 text-on-primary">+24.2%</div>
+<div class="w-full bg-white/5 h-1 mt-2 rounded-full"><div class="bg-secondary-fixed h-full w-4/5"></div></div>
+</div>
+<div class="bg-surface-container-lowest/5 p-md rounded-lg">
+<div class="text-on-surface-variant font-label-caps text-label-caps mb-1">Operational Slop</div>
+<div class="text-h4 font-h4 text-on-primary">2.1%</div>
+<div class="w-full bg-white/5 h-1 mt-2 rounded-full"><div class="bg-error h-full w-1/6"></div></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 pb-safe bg-inverse-surface/90 backdrop-blur-md border-t border-outline-variant/10 z-50">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">factory</span>
+<span class="font-label-caps text-label-caps">Mfg</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-caps text-label-caps">More</span>
+</div>
+</nav>
+<script>
+        // Carousel Logic
+        let currentSlide = 0;
+        const track = document.getElementById('track');
+        const dots = document.getElementById('carousel-dots').children;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            Array.from(dots).forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active-dot');
+                } else {
+                    dot.classList.remove('active-dot');
+                }
+            });
+        }
+
+        // Auto play
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % 3;
+            goToSlide(currentSlide);
+        }, 8000);
+
+        // Simple mouse hover interaction for Digital Twin nodes
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panel.classList.add('shadow-primary-fixed/20', 'shadow-2xl');
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.classList.remove('shadow-primary-fixed/20', 'shadow-2xl');
+            });
+        });
+    </script>
+</body></html>

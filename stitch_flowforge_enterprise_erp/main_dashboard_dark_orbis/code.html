@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ORBIS ERP | Operational Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 247, 249, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(209, 195, 202, 0.1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e1b1d; /* Fallback for on-background */
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1b1d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4e444a;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fff7f9",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#310e2b",
+                      "on-background": "#1e1b1d",
+                      "surface": "#fff7f9",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#e9e0e3",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#ffd7f1",
+                      "on-primary-fixed": "#2f1029",
+                      "on-secondary-container": "#7b4f70",
+                      "surface-container-highest": "#e9e0e3",
+                      "surface-container-high": "#efe6e9",
+                      "on-tertiary-fixed-variant": "#3b4c24",
+                      "inverse-primary": "#e9b8d9",
+                      "tertiary-fixed-dim": "#b9ce9a",
+                      "tertiary-container": "#4b5d33",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#5f3b56",
+                      "on-primary-container": "#f0bfe0",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#e0d8da",
+                      "surface-tint": "#79526f",
+                      "on-surface": "#1e1b1d",
+                      "inverse-surface": "#342f31",
+                      "surface-container": "#f4ecee",
+                      "primary-fixed-dim": "#e9b8d9",
+                      "on-secondary-fixed-variant": "#623958",
+                      "primary-container": "#714b67",
+                      "on-tertiary-fixed": "#112000",
+                      "surface-container-low": "#faf1f4",
+                      "secondary-container": "#fec7ed",
+                      "on-surface-variant": "#4e444a",
+                      "on-tertiary-container": "#c0d5a0",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#34451e",
+                      "secondary-fixed": "#ffd7f1",
+                      "secondary-fixed-dim": "#edb6dc",
+                      "surface-bright": "#fff7f9",
+                      "secondary": "#7c5071",
+                      "tertiary-fixed": "#d5eab4",
+                      "outline": "#80747a",
+                      "primary": "#57344f",
+                      "inverse-on-surface": "#f7eef1",
+                      "outline-variant": "#d1c3ca"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "0.5rem",
+                      "lg": "1.5rem",
+                      "xl": "2.5rem",
+                      "margin": "2rem",
+                      "xs": "0.25rem",
+                      "base": "4px",
+                      "max-width": "1440px",
+                      "md": "1rem",
+                      "gutter": "1.5rem"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "button": ["Inter"],
+                      "display": ["Inter"],
+                      "h4": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "caption": ["Inter"],
+                      "h2": ["Inter"],
+                      "h3": ["Inter"],
+                      "h1-mobile": ["Inter"],
+                      "h1": ["Inter"],
+                      "body": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "caption": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                      "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "h1-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "h1": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-on-background text-on-surface-variant antialiased min-h-screen">
+<!-- Header / TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-on-background/80 backdrop-blur-md border-b border-outline-variant/10 shadow-sm">
+<div class="flex items-center justify-between px-margin py-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3">
+<img alt="ORBIS Logo" class="h-8 w-auto" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<h1 class="font-h3 text-h3 font-bold text-primary-fixed-dim tracking-tight">ORBIS ERP</h1>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-caps text-label-caps text-primary-fixed font-bold" href="#">Dashboard</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Inventory</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Mfg</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Procure</a>
+</div>
+<div class="h-10 w-10 rounded-full border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6phkcgSzKWgdGpEuddEc3ryd_ue9IlG7dyZR45zZS0UERyFRFj4oqvxR5C__gJT15Bio9olqFg-IHZhgLbPzLFOlUBCYC4tVslr51IfLWkmlMBeZUOCpKuTyN2lqD2A9Red_epf0blVt0s4HtrMabvUvXUmHiWHn8oesBjbccjGmu9q4KzmdSkIcUlmRMPhXoHS_mjBq_s4d9ThgnhnFKwR69vXLRzQXLBcohSn6TRBr5WzjzkklgrjkHxVMLOK2cBmWD4kx6hSI"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation (Drawer) -->
+<aside class="fixed left-0 top-0 h-full w-20 md:w-72 bg-on-background border-r border-outline-variant/10 pt-24 hidden md:flex flex-col p-lg z-40">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-4 p-3 bg-primary-container text-on-primary-container rounded-lg font-semibold cursor-pointer">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-body text-body">Dashboard</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined">inventory</span>
+<span class="font-body text-body">Inventory</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+<span class="font-body text-body">Manufacturing</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body text-body">Procurement</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body text-body">Settings</span>
+</div>
+</div>
+<div class="mt-auto border-t border-outline-variant/10 pt-4">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col bg-surface-container-highest/30 p-3 rounded-lg border border-outline-variant/10">
+<span class="font-label-caps text-[10px] text-primary-fixed-dim uppercase tracking-widest mb-1">Tagline</span>
+<p class="font-caption text-[11px] leading-tight text-on-surface-variant">The Digital Backbone of Manufacturing</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface">System Status</span>
+<span class="font-caption text-caption text-tertiary-fixed-dim">All nodes active</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-72 pt-24 pb-32 px-margin">
+<div class="max-w-max-width mx-auto">
+<!-- Welcome Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-4">
+<div>
+<h2 class="font-h2 text-h2 text-on-primary-fixed mb-1">ORBIS Operational Overview</h2>
+<p class="font-body text-body text-on-surface-variant">Real-time status of production pipelines across the enterprise.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-surface-container-highest px-4 py-2 rounded-lg font-button text-button text-on-surface border border-outline-variant/10 hover:bg-surface-container-high transition-colors">
+                    Export Report
+                </button>
+<button class="bg-primary-container px-4 py-2 rounded-lg font-button text-button text-on-primary-container shadow-lg hover:opacity-90 transition-opacity">
+                    Create Order
+                </button>
+</div>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<!-- Primary Metric -->
+<div class="md:col-span-2 lg:col-span-2 glass-panel p-lg rounded-xl flex flex-col justify-between border-l-4 border-l-primary-container shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary-fixed p-2 bg-primary-container/20 rounded-lg">shopping_cart</span>
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim">+14.2%</span>
+</div>
+<div>
+<h4 class="font-display text-h2 text-on-primary-fixed mt-4">1,284</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Active Orders</p>
+</div>
+</div>
+<!-- Secondary Metric -->
+<div class="md:col-span-2 lg:col-span-2 glass-panel p-lg rounded-xl flex flex-col justify-between border-l-4 border-l-tertiary-container shadow-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary-fixed p-2 bg-tertiary-container/20 rounded-lg">factory</span>
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim">Stable</span>
+</div>
+<div>
+<h4 class="font-display text-h2 text-on-primary-fixed mt-4">98.2%</h4>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Mfg Efficiency</p>
+</div>
+</div>
+<!-- Alert Card -->
+<div class="md:col-span-4 lg:col-span-2 bg-error-container/10 border border-error/20 p-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 text-error mb-2">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-label-caps text-label-caps">Critical Alerts</span>
+</div>
+<h4 class="font-h4 text-h4 text-on-primary-fixed mb-4">Inventory Shortfall</h4>
+<p class="font-caption text-caption text-on-surface-variant mb-4">Batch #902 (Silicone Composite) is below safety threshold for Sector 4 production.</p>
+<button class="w-full bg-error text-on-error py-2 rounded-lg font-button text-button">Resolve Now</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[80px]">error</span>
+</div>
+</div>
+<!-- Manufacturing Pipeline Chart -->
+<div class="md:col-span-4 lg:col-span-4 glass-panel p-lg rounded-xl h-80 flex flex-col">
+<div class="flex items-center justify-between mb-lg">
+<h4 class="font-h4 text-h4 text-on-primary-fixed">ORBIS Production Throughput</h4>
+<div class="flex gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary-container"></span>
+</div>
+</div>
+<div class="flex-grow flex items-end justify-between gap-4 px-2">
+<!-- Mock Chart Bars -->
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[40%] transition-all hover:h-[50%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[80%]"></div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[60%] transition-all hover:h-[70%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[70%]"></div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[85%] transition-all hover:h-[95%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[90%]"></div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[55%] transition-all hover:h-[65%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[60%]"></div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[70%] transition-all hover:h-[80%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[75%]"></div>
+</div>
+<div class="w-full bg-surface-container-highest rounded-t-lg relative group h-[90%] transition-all hover:h-[100%]">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-[85%]"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 font-caption text-caption text-on-surface-variant">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="md:col-span-4 lg:col-span-2 glass-panel p-lg rounded-xl h-80 overflow-y-auto">
+<h4 class="font-h4 text-h4 text-on-primary-fixed mb-lg">ORBIS Event Logs</h4>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-2"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Order #2049 shipped</p>
+<p class="font-caption text-caption text-on-surface-variant">2 mins ago • Logistics</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container mt-2"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Batch #881 complete</p>
+<p class="font-caption text-caption text-on-surface-variant">14 mins ago • Factory A</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-1.5 h-1.5 rounded-full bg-error mt-2"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Sensor failure: Unit 4</p>
+<p class="font-caption text-caption text-on-surface-variant">45 mins ago • Maintenance</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-2"></div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Stock intake: Steel Plate</p>
+<p class="font-caption text-caption text-on-surface-variant">1 hour ago • Inventory</p>
+</div>
+</div>
+</div>
+</div>
+<!-- High Density Data Table -->
+<div class="md:col-span-4 lg:col-span-6 glass-panel rounded-xl overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-highest/5">
+<h4 class="font-h4 text-h4 text-on-primary-fixed">Active Production Line</h4>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">search</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">filter_list</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="border-b border-outline-variant/10 font-label-caps text-label-caps text-on-surface-variant bg-surface-container-low/50">
+<th class="px-lg py-3">ID</th>
+<th class="px-lg py-3">Product Name</th>
+<th class="px-lg py-3">Priority</th>
+<th class="px-lg py-3">Progress</th>
+<th class="px-lg py-3">Lead Time</th>
+<th class="px-lg py-3">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-highest/10 transition-colors">
+<td class="px-lg py-4 font-mono text-primary-fixed-dim">ORB-9021</td>
+<td class="px-lg py-4 text-on-surface">Titanium Alloy Brackets</td>
+<td class="px-lg py-4"><span class="px-2 py-1 rounded bg-error/10 text-error text-[10px] font-bold uppercase">Critical</span></td>
+<td class="px-lg py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[75%]"></div>
+</div>
+</td>
+<td class="px-lg py-4">4 hrs</td>
+<td class="px-lg py-4"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Processing</span></td>
+</tr>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-highest/10 transition-colors">
+<td class="px-lg py-4 font-mono text-primary-fixed-dim">ORB-9022</td>
+<td class="px-lg py-4 text-on-surface">Hydraulic Core V2</td>
+<td class="px-lg py-4"><span class="px-2 py-1 rounded bg-tertiary-container/20 text-tertiary-fixed-dim text-[10px] font-bold uppercase">Normal</span></td>
+<td class="px-lg py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[30%]"></div>
+</div>
+</td>
+<td class="px-lg py-4">12 hrs</td>
+<td class="px-lg py-4"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-surface-variant"></span> Queued</span></td>
+</tr>
+<tr class="border-b border-outline-variant/5 hover:bg-surface-container-highest/10 transition-colors">
+<td class="px-lg py-4 font-mono text-primary-fixed-dim">ORB-9023</td>
+<td class="px-lg py-4 text-on-surface">Carbon Fiber Chassis</td>
+<td class="px-lg py-4"><span class="px-2 py-1 rounded bg-primary-container/20 text-primary-fixed-dim text-[10px] font-bold uppercase">High</span></td>
+<td class="px-lg py-4">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[95%]"></div>
+</div>
+</td>
+<td class="px-lg py-4">1 hr</td>
+<td class="px-lg py-4"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Finalizing</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 pb-safe bg-on-background/80 backdrop-blur-md border-t border-outline-variant/10 z-50">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined">factory</span>
+<span class="font-label-caps text-label-caps">Mfg</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Procure</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-transform">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-caps text-label-caps">More</span>
+</div>
+</nav>
+<!-- Floating Action Button -->
+<div class="fixed bottom-24 right-8 md:bottom-12 md:right-12 z-40">
+<button class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.glass-panel');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    });
+</script>
+</body></html>

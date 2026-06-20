@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Receipt - FlowForge ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#714b67",
+                    "outline-variant": "#d1c3ca",
+                    "secondary-fixed-dim": "#edb6dc",
+                    "primary-fixed": "#ffd7f1",
+                    "tertiary-fixed-dim": "#b9ce9a",
+                    "primary-fixed-dim": "#e9b8d9",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#5f3b56",
+                    "surface-container": "#f4ecee",
+                    "inverse-on-surface": "#f7eef1",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff7f9",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#e9b8d9",
+                    "surface-container-low": "#faf1f4",
+                    "on-tertiary-fixed": "#112000",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f0bfe0",
+                    "tertiary-fixed": "#d5eab4",
+                    "surface-variant": "#e9e0e3",
+                    "surface": "#fff7f9",
+                    "on-secondary-fixed": "#310e2b",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#342f31",
+                    "surface-tint": "#79526f",
+                    "surface-container-highest": "#e9e0e3",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#2f1029",
+                    "on-tertiary-fixed-variant": "#3b4c24",
+                    "on-background": "#1e1b1d",
+                    "secondary-fixed": "#ffd7f1",
+                    "on-surface": "#1e1b1d",
+                    "on-secondary-container": "#7b4f70",
+                    "secondary-container": "#fec7ed",
+                    "surface-container-high": "#efe6e9",
+                    "secondary": "#7c5071",
+                    "background": "#fff7f9",
+                    "primary": "#57344f",
+                    "tertiary": "#34451e",
+                    "outline": "#80747a",
+                    "on-tertiary-container": "#c0d5a0",
+                    "on-secondary-fixed-variant": "#623958",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#4b5d33",
+                    "on-surface-variant": "#4e444a",
+                    "surface-dim": "#e0d8da"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "container-max": "1440px",
+                    "stack-xs": "4px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "stack-lg": "24px",
+                    "stack-xl": "48px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1c3ca; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #80747a; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- NavigationDrawer (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] flex flex-col border-r border-outline-variant dark:border-outline-variant/20 bg-surface-container-low dark:bg-inverse-surface z-50">
+<div class="p-stack-lg">
+<span class="text-headline-lg font-headline-lg text-primary dark:text-primary-fixed">FlowForge ERP</span>
+</div>
+<nav class="flex-1 px-stack-md space-y-unit">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</a>
+<!-- Active: Procurement -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold bg-secondary-fixed dark:bg-primary-container rounded-lg transition-transform scale-[0.98]" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Procurement</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span class="font-label-md text-label-md">Manufacturing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="p-stack-md border-t border-outline-variant/30">
+<div class="flex items-center gap-3 p-2 rounded-xl bg-surface-container">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Alex Miller</span>
+<span class="text-label-sm text-on-surface-variant">Warehouse Lead</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] h-screen flex flex-col relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-gutter z-40 sticky top-0 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-b border-outline-variant dark:border-outline-variant/20 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-stack-md">
+<button class="hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed">Command Center</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+<input class="bg-surface-container-high border-none rounded-full pl-10 pr-4 py-2 text-label-md focus:ring-2 focus:ring-primary/20 transition-all w-64" placeholder="Search POs..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-stack-md py-2 bg-primary text-on-primary rounded-full font-label-md hover:opacity-90 transition-all shadow-md">
+<span class="material-symbols-outlined" style="font-size: 18px;">qr_code_scanner</span>
+<span>Quick Scan</span>
+</button>
+</div>
+</header>
+<!-- Content Scrollable -->
+<div class="flex-1 overflow-y-auto p-margin-desktop bg-background">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Receipt Header Info -->
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant shadow-sm">
+<div class="flex justify-between items-start">
+<div class="space-y-stack-xs">
+<div class="flex items-center gap-stack-md">
+<h1 class="font-headline-xl text-headline-xl text-primary">PO-2024-0812</h1>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm uppercase tracking-wider">Partially Received</span>
+</div>
+<p class="text-on-surface-variant text-body-lg">Vendor: Industrial Steel &amp; Co. | Created: Oct 24, 2024</p>
+</div>
+<button class="flex items-center gap-2 text-primary hover:bg-primary/5 px-stack-md py-2 rounded-lg transition-colors border border-primary/20">
+<span class="material-symbols-outlined">print</span>
+<span class="font-label-md">Print Labels</span>
+</button>
+</div>
+</div>
+<div class="col-span-4 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant shadow-sm flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center mb-stack-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 32px;">inventory</span>
+</div>
+<span class="text-label-sm text-on-surface-variant uppercase">Overall Completion</span>
+<div class="w-full bg-surface-container h-2 rounded-full mt-stack-md overflow-hidden">
+<div class="bg-primary h-full w-[65%] transition-all duration-1000"></div>
+</div>
+<span class="font-headline-lg text-headline-lg mt-stack-xs">65%</span>
+</div>
+</div>
+<!-- Receipt Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="p-stack-md border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-title-md text-title-md text-on-surface">Incoming Items</h2>
+<div class="flex gap-stack-md">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/30">
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Item Details</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">SKU</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-center">Ordered</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-center">Received (Done)</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-stack-lg py-4 font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of industrial stainless steel pipes stacked neatly, metallic shine under bright workshop lights, professional commercial photography, sharp focus on texture, high-end ERP aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDutqpyCv7TnshwYUcUg9dB7xi-w5Qj4SE6XKDuOPnPoQ1vaiQnJgGYfmwtstHGaYVrywND7Qk87NLj7H9x3TrHvvTxIbYOQQd5t6F3L0CbCiuaP9NcbpYrY7U2ULH3FkMCJAIW4ucmbjJnIQrt3VrQXyGDweoEq0vd2SqkekbZQTHs0WRImmyY1LI95PxZ8TrjebYVgZ1XaAR9P6-PZcSDjcfvoVK_n24pvmalpC1wPjWZ1P0mQAm9eolJP4VqTLlnAaQFEbOxY7s"/>
+</div>
+<div>
+<span class="block font-body-lg text-on-surface font-semibold">T304 Stainless Tube</span>
+<span class="text-label-sm text-on-surface-variant">2.5" OD x 0.065" Wall</span>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-label-md">SS-2500-T304</td>
+<td class="px-stack-lg py-4 text-center font-body-lg">500 m</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<input class="w-20 bg-surface-container border-none rounded-lg text-center font-bold text-primary focus:ring-primary-container/20" type="number" value="500"/>
+<button class="w-8 h-8 flex items-center justify-center text-primary bg-primary/10 rounded-full hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined" style="font-size: 18px;">check</span>
+</button>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-tertiary-container text-on-tertiary-container text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span> Fully Received
+                                        </span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-stack-lg py-4">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Box of assorted precision industrial bolts and nuts, silver metallic finish, high-quality industrial supplies, bright studio lighting on white background, modern corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApRmrXdPeSPf3wwm7m95_q0R0qtZG_gwZaj4LB1Z7lsLy1MGdFiQ5MQNPs7fEnS9peVnEqsp0dL427uJSEHSu36OZcyqVAHp60XUtVet03wEtHERYaPbHQKmcAh4GOHrv71CAwXw4FTGD4rnas_6iXOSOPi2HBEAAAKX7NvwE5W0zKhoBlnv8eXretYtNeTfjE5gK0NnUqBB6q0OaVlKeRDjaU1-nAne5hDDsqWZxX7G-xqzYZpdy1rDso0w2mS_SJLqgfRNfU3xg"/>
+</div>
+<div>
+<span class="block font-body-lg text-on-surface font-semibold">Hex Bolt M12</span>
+<span class="text-label-sm text-on-surface-variant">Zinc Plated, Grade 8.8</span>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-label-md">FST-M12-ZINC</td>
+<td class="px-stack-lg py-4 text-center font-body-lg">2,500 pcs</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<input class="w-20 bg-surface-container border-2 border-primary/40 rounded-lg text-center font-bold text-primary focus:ring-primary-container/20" type="number" value="1200"/>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">qr_code_scanner</span>
+</button>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-secondary-container text-on-secondary-container text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container"></span> Partial
+                                        </span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group opacity-80">
+<td class="px-stack-lg py-4">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0 grayscale">
+<img class="w-full h-full object-cover" data-alt="Large rolls of heavy-duty industrial gasket material, rubber texture, dark industrial setting with atmospheric depth, professional photography, muted tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRBCqLYpaQv47ZkiVAJEslTwpN2yFWQR9bex1J8OnmVS_w0J5dgQDcl09TW3k3ZiBwdXbyE45ubXuzrP_s-dNNhnWRL2jcl2H4zflbVLANMyWwHSDVXNP50UmW6VyI4W_6bYP1O0MkqRzuUn5o_KK1PDSZgERCBXaRlPR3he6wnKwb21hUsK4-sPNlveQrLR8Eeyw8Uc-AY207C7U0sVAbTI_dOM-jzo4Kcn21Z6GgkQTCKuhsJri6ilzdk11QFs2ggrQLi-TnMeY"/>
+</div>
+<div>
+<span class="block font-body-lg text-on-surface font-semibold">EPDM Gasket Roll</span>
+<span class="text-label-sm text-on-surface-variant">3mm Thickness, 1.2m Width</span>
+</div>
+</div>
+</td>
+<td class="px-stack-lg py-4 font-label-md">GSK-3MM-EPDM</td>
+<td class="px-stack-lg py-4 text-center font-body-lg">15 rolls</td>
+<td class="px-stack-lg py-4">
+<div class="flex items-center justify-center gap-2">
+<input class="w-20 bg-surface-container-highest/20 border-dashed border-2 border-outline/30 rounded-lg text-center font-bold text-on-surface-variant focus:ring-primary-container/20" placeholder="0" type="number"/>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">qr_code_scanner</span>
+</button>
+</div>
+</td>
+<td class="px-stack-lg py-4">
+<span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-surface-variant text-on-surface-variant text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Pending
+                                        </span>
+</td>
+<td class="px-stack-lg py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Asymmetric Floating Action Panel -->
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-8 space-y-stack-md">
+<div class="bg-primary/5 rounded-xl p-stack-md border border-primary/10 flex items-start gap-stack-md">
+<span class="material-symbols-outlined text-primary">info</span>
+<div class="space-y-unit">
+<p class="text-body-md text-primary font-semibold">Backorder Detected</p>
+<p class="text-label-md text-on-surface-variant">Receiving partial quantities for Hex Bolt M12 will automatically trigger a backorder for the remaining 1,300 pcs once validated.</p>
+</div>
+</div>
+</div>
+<div class="col-span-4 bg-surface-container-highest/50 backdrop-blur-md rounded-xl p-stack-lg border border-outline-variant flex flex-col justify-end space-y-stack-md">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md">Items Expected</span>
+<span class="font-title-md">3 Lines</span>
+</div>
+<div class="flex justify-between items-center text-on-surface font-bold">
+<span class="font-label-md">Current Count</span>
+<span class="text-headline-lg">1,700 <span class="text-label-md font-normal">units</span></span>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-title-md shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">verified</span>
+                            Validate Receipt
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Quick Scan (Action Placeholder) -->
+<div class="absolute bottom-margin-desktop right-margin-desktop flex flex-col gap-stack-md items-end">
+<div class="hidden animate-bounce bg-inverse-surface text-inverse-on-surface px-stack-lg py-3 rounded-full shadow-2xl flex items-center gap-3" id="scan-toast">
+<span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+<span class="font-label-md">Item GSK-3MM-EPDM Scanned</span>
+</div>
+<button class="group w-16 h-16 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-xl hover:bg-secondary-container hover:text-on-secondary-container transition-all" onclick="simulateScan()">
+<span class="material-symbols-outlined" style="font-size: 32px;">barcode_scanner</span>
+<!-- Tooltip -->
+<span class="absolute right-20 bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded text-label-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-outline-variant">
+                    Open Camera Scanner
+                </span>
+</button>
+</div>
+</main>
+<script>
+        // Micro-interaction: Simulate scanning
+        function simulateScan() {
+            const toast = document.getElementById('scan-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Add visual interest to input fields on focus
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-105');
+                input.parentElement.classList.add('transition-transform');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-105');
+            });
+        });
+    </script>
+</body></html>

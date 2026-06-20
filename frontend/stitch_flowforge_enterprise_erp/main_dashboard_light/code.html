@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlowForge ERP | Operational Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fff7f9",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#310e2b",
+                    "on-background": "#1e1b1d",
+                    "surface": "#fff7f9",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e9e0e3",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#ffd7f1",
+                    "on-primary-fixed": "#2f1029",
+                    "on-secondary-container": "#7b4f70",
+                    "surface-container-highest": "#e9e0e3",
+                    "surface-container-high": "#efe6e9",
+                    "on-tertiary-fixed-variant": "#3b4c24",
+                    "inverse-primary": "#e9b8d9",
+                    "tertiary-fixed-dim": "#b9ce9a",
+                    "tertiary-container": "#4b5d33",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#5f3b56",
+                    "on-primary-container": "#f0bfe0",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#e0d8da",
+                    "surface-tint": "#79526f",
+                    "on-surface": "#1e1b1d",
+                    "inverse-surface": "#342f31",
+                    "surface-container": "#f4ecee",
+                    "primary-fixed-dim": "#e9b8d9",
+                    "on-secondary-fixed-variant": "#623958",
+                    "primary-container": "#714b67",
+                    "on-tertiary-fixed": "#112000",
+                    "surface-container-low": "#faf1f4",
+                    "secondary-container": "#fec7ed",
+                    "on-surface-variant": "#4e444a",
+                    "on-tertiary-container": "#c0d5a0",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#34451e",
+                    "secondary-fixed": "#ffd7f1",
+                    "secondary-fixed-dim": "#edb6dc",
+                    "surface-bright": "#fff7f9",
+                    "secondary": "#7c5071",
+                    "tertiary-fixed": "#d5eab4",
+                    "outline": "#80747a",
+                    "primary": "#57344f",
+                    "inverse-on-surface": "#f7eef1",
+                    "outline-variant": "#d1c3ca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "0.5rem",
+                    "lg": "1.5rem",
+                    "xl": "2.5rem",
+                    "margin": "2rem",
+                    "xs": "0.25rem",
+                    "base": "4px",
+                    "max-width": "1440px",
+                    "md": "1rem",
+                    "gutter": "1.5rem"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "button": ["Inter"],
+                    "display": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "caption": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fff7f9;
+        color: #1e1b1d;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d1c3ca;
+        border-radius: 10px;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-margin py-md w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors duration-200 rounded-lg active:scale-95 transition-transform" data-icon="menu">menu</button>
+<h1 class="font-h2 text-h2 font-bold text-primary dark:text-primary-fixed-dim">FlowForge</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex items-center gap-6">
+<a class="text-primary dark:text-primary-fixed font-bold font-button text-button" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-button text-button hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-button text-button hover:text-primary transition-colors" href="#">Manufacturing</a>
+</nav>
+<div class="h-6 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full" data-icon="search">search</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of an executive operations director with a focused expression, wearing a high-end charcoal suit. The background is a blurred modern office setting with warm sunlight and soft plum-colored accents, maintaining the enterprise aesthetic and professional color palette of the FlowForge brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfgPyHfcfP6DmmZEe67J4A2GIFDVBI4O0vN4EvFdKpoWZHHoB4WHcQ9B3mUaVCIzjoKmZ5KlLtIa0uK5h5BYrHZvuh5ngPpRU4hoMUzuNmH3tgOZbIGAoFfzMiLcJFJmTUTkEF1YzSh-ofwZTwmFszrcwGY6JVSIEM2h_1MEv1NtcYdhwK_HobwUBvvVrPfI_FC9ibBem4aVLHGo9U8uRxIp9Snq_LV1nipC-gBmEqm7RHV7VpWNaFHItcxEhplzXqc9GFale8oFA"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex pt-[72px] min-h-screen">
+<!-- Sidebar (Desktop NavigationDrawer inspired) -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-72px)] w-72 p-lg bg-surface border-r border-outline-variant/20 shadow-xl fixed left-0">
+<div class="flex flex-col gap-2 flex-grow">
+<div class="flex items-center gap-4 p-4 mb-4 bg-primary-fixed/30 rounded-xl">
+<div class="w-12 h-12 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of Alex Sterling, an Operations Director in her late 30s. She is smiling confidently, set against a background of a high-tech manufacturing floor seen through a soft-focus lens. The lighting is crisp and modern, emphasizing a light-mode workspace with primary plum and soft white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Kw-SregXb991ToihN5A1gvooJqfbz5KOgqQ6ktqPF2UubleOG40P36ztMNGG0V5NbwGamwYBO7E1AmvDir5p-mOxd1JGNcm8fHiqC6OnOal5LfwUtkSTunpRP2S1tAjqupNns2ti2fYLm3Zu_EU_VfdxAA8E_Il6a5WJBM4nyqPsY-V1faMyZKLJlTAv35CLyYdCUpY0mZsDCC_etzuUnremQoz91Cd_E4HR03wjTHS0fy4EwM0-4RcSUh_ZeuaLCZ8tilmet10"/>
+</div>
+<div>
+<p class="font-h3 text-body font-bold text-primary">Alex Sterling</p>
+<p class="font-caption text-caption text-on-surface-variant">Operations Director</p>
+</div>
+</div>
+<a class="flex items-center gap-3 p-3 text-primary bg-primary-fixed/30 font-semibold rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-body text-body">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-body text-body">Inventory</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="font-body text-body">Manufacturing</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body text-body">Procurement</span>
+</a>
+<div class="mt-auto">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body text-body">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow lg:ml-72 p-margin max-w-max-width mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-xl">
+<div>
+<h2 class="font-h1 text-h1 font-semibold text-on-background tracking-tight">Operational Insights</h2>
+<p class="text-on-surface-variant font-body mt-1">Real-time status for HQ-North manufacturing facility.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-outline-variant/30 rounded-lg font-button text-button text-primary hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                        Filter View
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-button text-button hover:opacity-90 transition-opacity shadow-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                        New Work Order
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Active Orders Card -->
+<div class="col-span-1 lg:col-span-2 glass-card rounded-xl p-lg flex flex-col gap-6 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="assignment">assignment</span>
+<h3 class="font-h3 text-h3">Active Work Orders</h3>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-label-caps">14 IN PROGRESS</span>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant/20">
+<tr>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant">Order ID</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant">Production Line</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant">Status</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant">Efficiency</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4 font-body font-semibold">#WO-20485</td>
+<td class="py-4 px-4 font-body-sm">Assembly Line B</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="font-body-sm text-tertiary">Optimized</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 92%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4 font-body font-semibold">#WO-20489</td>
+<td class="py-4 px-4 font-body-sm">Packaging Unit 1</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<span class="font-body-sm text-primary">Normal</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 76%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4 font-body font-semibold">#WO-20492</td>
+<td class="py-4 px-4 font-body-sm">Fabrication Hub</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-body-sm text-error">Delayed</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 45%"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Live Monitoring (SVG/Animation Placeholder) -->
+<div class="col-span-1 glass-card rounded-xl overflow-hidden shadow-sm relative group">
+<div class="p-lg absolute top-0 left-0 w-full z-10 flex justify-between items-start">
+<div>
+<h3 class="font-h4 text-h4 text-on-background">Factory Load</h3>
+<p class="font-caption text-caption text-on-surface-variant">Real-time throughput</p>
+</div>
+<span class="bg-primary text-on-primary text-[10px] px-2 py-0.5 rounded-full animate-pulse">LIVE</span>
+</div>
+<div class="h-64 w-full flex items-center justify-center bg-surface-container relative">
+
+<div class="absolute bottom-8 text-center">
+<p class="font-display text-display text-primary">84%</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">NOMINAL CAPACITY</p>
+</div>
+</div>
+</div>
+<!-- Inventory Levels Card -->
+<div class="col-span-1 glass-card rounded-xl p-lg flex flex-col gap-6 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h3 class="font-h3 text-h3">Raw Materials</h3>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</button>
+</div>
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-body-sm">
+<span>Steel Grade-A</span>
+<span class="font-semibold">4,200kg</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full">
+<div class="h-full bg-primary-container rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-body-sm">
+<span>Polymers</span>
+<span class="font-semibold text-error">120kg</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full">
+<div class="h-full bg-error rounded-full" style="width: 15%"></div>
+</div>
+<p class="text-[10px] text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="warning">warning</span>
+                                Below safety threshold
+                            </p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-body-sm">
+<span>Silicon Pellets</span>
+<span class="font-semibold">1,850kg</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 py-3 border border-dashed border-outline-variant rounded-lg font-button text-button text-on-surface-variant hover:bg-surface-container transition-all">
+                        Restock Inventory
+                    </button>
+</div>
+<!-- Manufacturing Alerts -->
+<div class="col-span-1 lg:col-span-2 glass-card rounded-xl p-lg shadow-sm border-l-4 border-l-primary">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<h3 class="font-h3 text-h3">Priority Alerts</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 p-4 rounded-xl bg-error-container/30 border border-error-container">
+<div class="p-2 bg-error-container rounded-lg">
+<span class="material-symbols-outlined text-error" data-icon="report_problem">report_problem</span>
+</div>
+<div>
+<h4 class="font-body font-bold text-on-error-container">Sensor Malfunction</h4>
+<p class="font-caption text-caption text-on-surface-variant">Assembly Line C, Node-7 reported high variance in thermal output.</p>
+<div class="flex gap-3 mt-3">
+<button class="text-error font-button text-button hover:underline">Assign Technician</button>
+<button class="text-on-surface-variant font-button text-button">Dismiss</button>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl bg-tertiary-fixed/30 border border-tertiary-fixed">
+<div class="p-2 bg-tertiary-fixed rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="schedule">schedule</span>
+</div>
+<div>
+<h4 class="font-body font-bold text-on-tertiary-fixed">Maintenance Window</h4>
+<p class="font-caption text-caption text-on-surface-variant">Scheduled maintenance for Main Boiler in 14 hours. Plan for 2-hour downtime.</p>
+<div class="flex gap-3 mt-3">
+<button class="text-tertiary font-button text-button hover:underline">View Schedule</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for Bottom Nav -->
+<div class="h-24 lg:h-8"></div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/80 backdrop-blur-md border-t border-outline-variant/30 flex justify-around items-center px-4 py-2 pb-safe z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="factory">factory</span>
+<span class="font-label-caps text-label-caps">Mfg</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-caps text-label-caps">Procure</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+<span class="font-label-caps text-label-caps">More</span>
+</div>
+</nav>
+<!-- Global Floating Action Button -->
+<button class="fixed bottom-24 right-6 md:bottom-12 md:right-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined text-[28px]" data-icon="add">add</span>
+</button>
+<script>
+        // Micro-interactions for dashboard elements
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-lg');
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'all 0.3s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-lg');
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Command + K Search Simulation
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                alert('Opening Global Command Search...');
+            }
+        });
+    </script>
+</body></html>

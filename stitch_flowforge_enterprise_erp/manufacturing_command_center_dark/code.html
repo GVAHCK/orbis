@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manufacturing Command Center | FlowForge ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#161f00",
+                        "on-surface": "#e4e1e6",
+                        "on-secondary-fixed": "#1b1b22",
+                        "surface-bright": "#39393c",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#dbe9ae",
+                        "on-tertiary-container": "#232d05",
+                        "surface": "#131316",
+                        "tertiary-fixed-dim": "#bfcd94",
+                        "on-primary-fixed": "#2c112d",
+                        "primary": "#e4b9df",
+                        "surface-container-high": "#2a2a2d",
+                        "on-tertiary": "#2a340b",
+                        "on-tertiary-fixed-variant": "#404b1f",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e4e1e6",
+                        "primary-container": "#ab84a8",
+                        "on-secondary": "#303038",
+                        "surface-container-lowest": "#0e0e11",
+                        "secondary": "#c7c5d0",
+                        "secondary-fixed": "#e4e1ec",
+                        "surface-tint": "#e4b9df",
+                        "surface-container-low": "#1b1b1e",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#d0c3cb",
+                        "primary-fixed": "#ffd6fa",
+                        "on-secondary-fixed-variant": "#46464e",
+                        "on-secondary-container": "#b9b7c1",
+                        "secondary-container": "#494851",
+                        "tertiary": "#bfcd94",
+                        "background": "#131316",
+                        "surface-variant": "#353438",
+                        "on-primary-fixed-variant": "#5c3c5b",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#e4b9df",
+                        "inverse-on-surface": "#303033",
+                        "inverse-primary": "#755374",
+                        "surface-container": "#1f1f22",
+                        "outline": "#998e95",
+                        "tertiary-container": "#899663",
+                        "on-background": "#e4e1e6",
+                        "surface-container-highest": "#353438",
+                        "on-primary-container": "#3c1f3c",
+                        "outline-variant": "#4d444b",
+                        "secondary-fixed-dim": "#c7c5d0",
+                        "on-primary": "#442643",
+                        "surface-dim": "#131316"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131316;
+            color: #e4e1e6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1f1f22;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4d444b;
+            border-radius: 10px;
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 10px rgba(228, 185, 223, 0.2);
+        }
+        .station-card:hover {
+            border-color: #e4b9df;
+            transition: all 0.3s ease;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="dark selection:bg-primary-container selection:text-on-primary-container">
+<!-- Navigation Drawer -->
+<aside class="fixed h-full left-0 top-0 w-[240px] flex flex-col bg-surface-container border-r border-outline-variant z-50">
+<div class="p-lg flex flex-col gap-xs">
+<div class="text-title-md font-title-md font-bold text-primary mb-md">FlowForge ERP</div>
+<div class="flex items-center gap-md p-sm mb-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">AM</div>
+<div class="flex flex-col">
+<span class="text-body-md font-bold text-on-surface">Alex Morgan</span>
+<span class="text-label-md text-on-surface-variant">Operations Manager</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-md space-y-xs overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-body-md">Sales</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-body-md">Inventory</span>
+</a>
+<!-- Active State: Manufacturing -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-bold opacity-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span class="text-body-md">Manufacturing</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-body-md">Procurement</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-body-md">Analytics</span>
+</a>
+</nav>
+<div class="p-md border-t border-outline-variant">
+<div class="text-label-md text-on-surface-variant mb-sm px-md">SUB-COMMANDS</div>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-[18px]">list_alt</span>
+<span class="text-body-md text-xs">Production Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined text-[18px]">engineering</span>
+<span class="text-body-md text-xs">Work Centers</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-[240px] flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-lg py-md bg-surface-dim border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">search</span>
+<h1 class="text-headline-lg font-black text-on-surface">Command Center</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary text-on-primary-fixed px-md py-sm rounded-lg text-label-md font-bold flex items-center gap-sm hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Quick Action
+                </button>
+<div class="h-8 w-[1px] bg-outline-variant mx-sm"></div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">settings</span>
+</div>
+</header>
+<!-- Canvas Container -->
+<div class="p-lg grid grid-cols-12 gap-lg">
+<!-- Bento Section: Production Efficiency & Live Status -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<!-- Section Title -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-title-md font-title-md text-on-surface">Live Station Monitor</h2>
+<p class="text-label-md text-on-surface-variant">Real-time status of assembly lines A through F</p>
+</div>
+<div class="flex gap-sm">
+<span class="flex items-center gap-xs text-xs text-tertiary"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Active</span>
+<span class="flex items-center gap-xs text-xs text-error"><span class="w-2 h-2 rounded-full bg-error"></span> Warning</span>
+</div>
+</div>
+<!-- Station Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Station 1 -->
+<div class="bg-surface-container border border-outline-variant p-md rounded-xl station-card flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest">Station Alpha-1</span>
+<span class="px-sm py-[2px] rounded bg-tertiary-container text-on-tertiary-container text-[10px] font-black uppercase">Running</span>
+</div>
+<div class="py-md">
+<div class="text-headline-lg font-black text-primary">94.2%</div>
+<div class="text-label-md text-on-surface-variant">Current Throughput</div>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 94%;"></div>
+</div>
+<div class="flex justify-between items-center mt-sm">
+<span class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">timer</span> 4h 12m Uptime
+                            </span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] cursor-pointer">more_vert</span>
+</div>
+</div>
+<!-- Station 2 -->
+<div class="bg-surface-container border border-outline-variant p-md rounded-xl station-card flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest">Station Beta-2</span>
+<span class="px-sm py-[2px] rounded bg-error-container text-on-error-container text-[10px] font-black uppercase">Stalled</span>
+</div>
+<div class="py-md">
+<div class="text-headline-lg font-black text-error">12.8%</div>
+<div class="text-label-md text-on-surface-variant">Mechanical Jam Detected</div>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 12%;"></div>
+</div>
+<div class="flex justify-between items-center mt-sm">
+<span class="text-[10px] text-error flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[12px]">warning</span> Alert Raised
+                            </span>
+<button class="text-[10px] bg-on-error-container text-on-error px-sm py-[2px] rounded font-bold uppercase hover:bg-error">Resolve</button>
+</div>
+</div>
+<!-- Station 3 -->
+<div class="bg-surface-container border border-outline-variant p-md rounded-xl station-card flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<span class="text-label-md font-bold text-on-surface-variant uppercase tracking-widest">Station Gamma-4</span>
+<span class="px-sm py-[2px] rounded bg-secondary-container text-secondary text-[10px] font-black uppercase">Idle</span>
+</div>
+<div class="py-md">
+<div class="text-headline-lg font-black text-secondary">0.0%</div>
+<div class="text-label-md text-on-surface-variant">Shift Change Interval</div>
+</div>
+<div class="w-full bg-surface-variant h-1 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full" style="width: 0%;"></div>
+</div>
+<div class="flex justify-between items-center mt-sm">
+<span class="text-[10px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Starts in 18m
+                            </span>
+</div>
+</div>
+</div>
+<!-- Production Efficiency Chart Area -->
+<div class="bg-surface-container border border-outline-variant rounded-xl p-lg relative overflow-hidden flex flex-col gap-md">
+<div class="flex justify-between items-center z-10">
+<div>
+<h3 class="text-body-md font-bold text-on-surface">Production Efficiency (Daily)</h3>
+<p class="text-label-md text-on-surface-variant">Comparative analysis of Yield vs Waste</p>
+</div>
+<div class="flex gap-sm">
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-primary"></span> <span class="text-xs text-on-surface-variant">Yield</span></div>
+<div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-tertiary"></span> <span class="text-xs text-on-surface-variant">Target</span></div>
+</div>
+</div>
+<div class="h-64 w-full flex items-end justify-between gap-md relative">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 grid grid-rows-4 pointer-events-none">
+<div class="border-b border-outline-variant/30"></div>
+<div class="border-b border-outline-variant/30"></div>
+<div class="border-b border-outline-variant/30"></div>
+<div class="border-b border-outline-variant/30"></div>
+</div>
+<!-- Chart Bars -->
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-sm h-[40%] group-hover:bg-primary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">40%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">MON</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-sm h-[65%] group-hover:bg-primary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">65%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">TUE</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-primary/40 rounded-t-sm h-[82%] group-hover:bg-primary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">82%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">WED</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-sm h-[70%] group-hover:bg-primary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">70%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">THU</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-primary rounded-t-sm h-[95%] group-hover:bg-primary-container transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">95%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">FRI</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-secondary-container rounded-t-sm h-[20%] group-hover:bg-secondary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">20%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">SAT</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
+<div class="w-full max-w-[40px] bg-secondary-container rounded-t-sm h-[15%] group-hover:bg-secondary transition-colors cursor-pointer relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">15%</div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold">SUN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Bento Column: Heatmap & Recent Orders -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Work Center Utilization Heatmap -->
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-md flex flex-col gap-md">
+<h3 class="text-body-md font-bold text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">grid_view</span>
+                        Center Utilization
+                    </h3>
+<div class="grid grid-cols-5 gap-xs">
+<!-- Heatmap Generation (Simulated grid) -->
+<div class="aspect-square bg-tertiary rounded-sm opacity-20"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-40"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-90"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-60"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-80"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-100"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-20"></div>
+<div class="aspect-square bg-primary rounded-sm opacity-40"></div>
+<div class="aspect-square bg-primary rounded-sm opacity-80"></div>
+<div class="aspect-square bg-primary rounded-sm opacity-100"></div>
+<div class="aspect-square bg-error rounded-sm opacity-30"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-20"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-40"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-10"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-30"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-60"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-70"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-80"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-90"></div>
+<div class="aspect-square bg-tertiary rounded-sm opacity-100"></div>
+</div>
+<div class="flex justify-between items-center text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mt-sm">
+<span>Low Usage</span>
+<span>Max Cap</span>
+</div>
+</div>
+<!-- Recent Manufacturing Orders -->
+<div class="flex-1 bg-surface-container border border-outline-variant rounded-xl flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="text-body-md font-bold text-on-surface">Active Orders</h3>
+<span class="text-label-md text-primary font-bold cursor-pointer hover:underline">View All</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Order Row 1 -->
+<div class="p-md border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-xs">
+<span class="text-label-md font-black text-primary">MO-90234</span>
+<span class="text-[10px] text-on-surface-variant">Due in 2d</span>
+</div>
+<div class="text-body-md text-on-surface font-semibold mb-xs">Precision Gear Assembly</div>
+<div class="flex justify-between items-center">
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Qty: 500 / 1200</div>
+<div class="text-[10px] font-bold text-tertiary">41% Complete</div>
+</div>
+</div>
+<!-- Order Row 2 -->
+<div class="p-md border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-xs">
+<span class="text-label-md font-black text-primary">MO-90235</span>
+<span class="text-[10px] text-error font-bold">Urgent</span>
+</div>
+<div class="text-body-md text-on-surface font-semibold mb-xs">Titanium Casting Chassis</div>
+<div class="flex justify-between items-center">
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Qty: 24 / 24</div>
+<div class="text-[10px] font-bold text-secondary">Final QA</div>
+</div>
+</div>
+<!-- Order Row 3 -->
+<div class="p-md border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-xs">
+<span class="text-label-md font-black text-primary">MO-90236</span>
+<span class="text-[10px] text-on-surface-variant">Scheduled</span>
+</div>
+<div class="text-body-md text-on-surface font-semibold mb-xs">Electronic Control Unit V3</div>
+<div class="flex justify-between items-center">
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Qty: 0 / 4500</div>
+<div class="text-[10px] font-bold text-on-surface-variant">Staging</div>
+</div>
+</div>
+<!-- Order Row 4 -->
+<div class="p-md border-b border-outline-variant/30 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-xs">
+<span class="text-label-md font-black text-primary">MO-90237</span>
+<span class="text-[10px] text-on-surface-variant">Due in 5d</span>
+</div>
+<div class="text-body-md text-on-surface font-semibold mb-xs">Composite Wing Spars</div>
+<div class="flex justify-between items-center">
+<div class="text-[10px] text-on-surface-variant uppercase font-bold">Qty: 10 / 10</div>
+<div class="text-[10px] font-bold text-tertiary">Completed</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats Bar -->
+<footer class="mt-auto bg-surface-container border-t border-outline-variant p-md flex flex-wrap justify-between items-center gap-md">
+<div class="flex gap-lg">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Total Active Workforce</span>
+<span class="text-body-md font-black text-on-surface">1,248 Operators</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Global OEE Score</span>
+<span class="text-body-md font-black text-tertiary">88.4% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">System Health</span>
+<span class="text-body-md font-black text-on-surface">Stable</span>
+</div>
+</div>
+<div class="flex gap-sm">
+<div class="flex items-center gap-xs px-md py-sm bg-surface-variant rounded text-xs font-bold text-on-surface cursor-pointer hover:bg-outline-variant">
+<span class="material-symbols-outlined text-[16px]">download</span> Export Report
+                </div>
+<div class="flex items-center gap-xs px-md py-sm bg-surface-variant rounded text-xs font-bold text-on-surface cursor-pointer hover:bg-outline-variant">
+<span class="material-symbols-outlined text-[16px]">refresh</span> Force Sync
+                </div>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button for Emergency Stop / Global Alert -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-error-container text-on-error-container rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all group z-50">
+<span class="material-symbols-outlined text-[28px] group-hover:animate-ping">priority_high</span>
+</button>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('.station-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('neon-glow-primary');
+            });
+        });
+
+        // Simulating Live Data Feed
+        setInterval(() => {
+            const activeCount = document.querySelector('.text-headline-lg.text-primary');
+            if (activeCount) {
+                const current = parseFloat(activeCount.innerText);
+                const variance = (Math.random() - 0.5) * 0.4;
+                activeCount.innerText = (current + variance).toFixed(1) + '%';
+            }
+        }, 3000);
+    </script>
+</body></html>

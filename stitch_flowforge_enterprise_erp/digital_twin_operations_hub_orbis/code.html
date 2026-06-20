@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ORBIS ERP | Digital Twin Operations Hub</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1e1b1d",
+                    "on-primary-fixed": "#2f1029",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#3b4c24",
+                    "surface-tint": "#79526f",
+                    "surface-container-highest": "#e9e0e3",
+                    "inverse-surface": "#342f31",
+                    "tertiary-container": "#4b5d33",
+                    "on-surface-variant": "#4e444a",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#e0d8da",
+                    "tertiary": "#34451e",
+                    "outline": "#80747a",
+                    "on-tertiary-container": "#c0d5a0",
+                    "on-secondary-fixed-variant": "#623958",
+                    "primary": "#57344f",
+                    "background": "#fff7f9",
+                    "secondary-fixed": "#ffd7f1",
+                    "on-surface": "#1e1b1d",
+                    "on-secondary-container": "#7b4f70",
+                    "surface-container-high": "#efe6e9",
+                    "secondary": "#7c5071",
+                    "secondary-container": "#fec7ed",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff7f9",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f7eef1",
+                    "on-primary-fixed-variant": "#5f3b56",
+                    "surface-container": "#f4ecee",
+                    "secondary-fixed-dim": "#edb6dc",
+                    "primary-fixed": "#ffd7f1",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#b9ce9a",
+                    "primary-fixed-dim": "#e9b8d9",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#714b67",
+                    "outline-variant": "#d1c3ca",
+                    "surface": "#fff7f9",
+                    "on-secondary-fixed": "#310e2b",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#112000",
+                    "tertiary-fixed": "#d5eab4",
+                    "surface-variant": "#e9e0e3",
+                    "on-primary-container": "#f0bfe0",
+                    "inverse-primary": "#e9b8d9",
+                    "surface-container-low": "#faf1f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "stack-xl": "48px",
+                    "stack-lg": "24px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-xs": "4px",
+                    "container-max": "1440px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fff7f9; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .node-active { animation: pulse-glow 2s infinite ease-in-out; }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(113, 75, 103, 0.4); }
+            50% { box-shadow: 0 0 20px 4px rgba(113, 75, 103, 0.2); }
+        }
+        .bottleneck-pulse { animation: amber-pulse 1.5s infinite; }
+        @keyframes amber-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-secondary-container min-h-[max(884px,100dvh)]">
+<!-- Navigation Drawer (Mandatory Shell) -->
+<aside class="fixed left-0 top-0 h-screen w-[280px] flex flex-col border-r border-outline-variant dark:border-outline-variant/20 bg-surface-container-low dark:bg-inverse-surface hidden md:flex z-50">
+<div class="p-6 flex items-center gap-3">
+<img alt="ORBIS Logo" class="w-8 h-8 object-contain" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<span class="font-headline-lg text-headline-lg text-primary dark:text-primary-fixed tracking-tight">ORBIS ERP</span>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed font-bold bg-secondary-fixed dark:bg-primary-container rounded-lg transition-transform active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span class="font-label-md text-label-md">Manufacturing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Procurement</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant/10 transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant/20">
+<div class="flex items-center gap-3 px-4 py-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">JD</div>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface">John Doe</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-gutter md:ml-[280px] sticky top-0 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-b border-outline-variant dark:border-outline-variant/20 z-40 transition-all duration-200">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-title-md text-title-md text-primary dark:text-inverse-primary">Digital Twin Operations Hub</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-tertiary/10 text-tertiary rounded-full border border-tertiary/20">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm">Live Sync Active</span>
+</div>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-label-md text-label-md hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Quick Action
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[280px] min-h-[calc(100vh-64px)] p-margin-mobile md:p-margin-desktop space-y-gutter pb-24 md:pb-margin-desktop">
+<!-- Hero Section: Digital Twin Flow Visualization -->
+<section class="glass-card rounded-2xl p-6 relative overflow-hidden shadow-sm">
+<div class="flex flex-col mb-8">
+<h2 class="font-headline-lg text-headline-lg text-primary">ORBIS Business Flow Live Twin</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time digital twin monitoring for global supply sequence</p>
+</div>
+<div class="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 py-8">
+<!-- Background connecting line -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant/30 hidden md:block -translate-y-1/2 z-0"></div>
+<div class="absolute left-1/2 top-0 h-full w-[2px] bg-outline-variant/30 md:hidden -translate-x-1/2 z-0"></div>
+<!-- Node: Customer Orders -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-primary text-on-primary flex items-center justify-center shadow-lg node-active">
+<span class="material-symbols-outlined text-[28px]">shopping_basket</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-primary">Customer Orders</span>
+<span class="text-[11px] font-medium text-tertiary">124 Pending</span>
+</div>
+<!-- Node: Inventory -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest text-primary flex items-center justify-center border border-outline-variant group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined text-[28px]">inventory_2</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-on-surface-variant">Inventory Twin</span>
+<span class="text-[11px] font-medium text-on-surface-variant/60">Optimized</span>
+</div>
+<!-- Node: Procurement (Bottleneck) -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-error-container text-on-error-container flex items-center justify-center border border-error/20 bottleneck-pulse shadow-sm">
+<span class="material-symbols-outlined text-[28px]">local_shipping</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-error">Procurement</span>
+<span class="text-[11px] font-medium text-error/80">3 Delays</span>
+</div>
+<!-- Node: Manufacturing -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest text-primary flex items-center justify-center border border-outline-variant group-hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[28px]">factory</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-on-surface-variant">Manufacturing</span>
+<span class="text-[11px] font-medium text-tertiary">94% Load</span>
+</div>
+<!-- Node: Warehouse -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest text-primary flex items-center justify-center border border-outline-variant group-hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-[28px]">warehouse</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-on-surface-variant">Warehouse Hub</span>
+<span class="text-[11px] font-medium text-on-surface-variant/60">82% Cap</span>
+</div>
+<!-- Node: Delivery -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-14 h-14 rounded-2xl bg-primary text-on-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[28px]">check_circle</span>
+</div>
+<span class="mt-3 font-label-md text-label-md text-primary">Delivery Sync</span>
+<span class="text-[11px] font-medium text-tertiary">42 Shipped</span>
+</div>
+</div>
+</section>
+<!-- Executive Scores Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Score: Inventory Health -->
+<div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center group hover:border-primary/30 transition-all">
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="30" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xl font-bold text-primary">88%</span>
+</div>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface-variant">Digital Inventory Health</h3>
+<span class="text-[11px] text-tertiary mt-1">+2.4% vs last week</span>
+</div>
+<!-- Score: Procurement Risk -->
+<div class="glass-card rounded-2xl p-6 flex flex-col group hover:border-error/30 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div class="px-3 py-1 rounded-pill bg-tertiary-fixed-dim text-on-tertiary-fixed text-[11px] font-bold uppercase tracking-wider">Low Risk</div>
+</div>
+<div class="mt-auto">
+<span class="text-display-lg font-display-lg text-primary leading-none">3.2</span>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2">ORBIS Safety Score</p>
+</div>
+</div>
+<!-- Score: Manufacturing Efficiency -->
+<div class="glass-card rounded-2xl p-6 flex flex-col group hover:border-primary/30 transition-all">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant">Twin Efficiency</h3>
+<span class="text-tertiary font-bold">94%</span>
+</div>
+<div class="h-16 w-full flex items-end gap-1">
+<div class="flex-1 bg-primary/10 h-[40%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+<div class="flex-1 bg-primary/10 h-[60%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+<div class="flex-1 bg-primary/10 h-[55%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+<div class="flex-1 bg-primary/10 h-[80%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+<div class="flex-1 bg-primary/10 h-[70%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+<div class="flex-1 bg-primary h-[94%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/10 h-[85%] rounded-t-sm group-hover:bg-primary/20 transition-all"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant/60 mt-4 italic">Peak performance observed at 14:00</p>
+</div>
+<!-- Score: Delivery Performance -->
+<div class="glass-card rounded-2xl p-6 flex flex-col group hover:border-tertiary/30 transition-all">
+<div class="p-3 rounded-xl bg-secondary-fixed text-on-secondary-fixed w-fit mb-4">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div class="mt-auto">
+<span class="text-display-lg font-display-lg text-primary leading-none">98.2<span class="text-xl font-medium text-on-surface-variant">%</span></span>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2">On-Time Fulfillment</p>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-tertiary h-full w-[98.2%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Grid: Analytics & Bottlenecks -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Revenue Trend Chart (Area) -->
+<div class="lg:col-span-2 glass-card rounded-2xl p-6">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary">Revenue Throughput</h3>
+<p class="text-body-md text-on-surface-variant">Global ORBIS operations value stream</p>
+</div>
+<select class="bg-surface border-outline-variant rounded-lg font-label-md text-label-md py-1 pr-8 text-on-surface-variant focus:ring-primary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<!-- Placeholder Area Chart with CSS/SVG -->
+<div class="relative h-[280px] w-full">
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 1000 300">
+<defs>
+<lineargradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--primary)" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="var(--primary)" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,250 Q150,230 250,180 T450,150 T650,80 T850,100 T1000,40 L1000,300 L0,300 Z" fill="url(#areaGradient)"></path>
+<path d="M0,250 Q150,230 250,180 T450,150 T650,80 T850,100 T1000,40" fill="none" stroke="#57344f" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<!-- Y Axis Labels -->
+<div class="absolute inset-0 flex flex-col justify-between py-2 pointer-events-none opacity-40 text-[10px] font-bold">
+<span>$500k</span>
+<span>$250k</span>
+<span>$0</span>
+</div>
+</div>
+<div class="flex justify-between mt-4 px-2 font-label-sm text-label-sm text-on-surface-variant opacity-60">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span>
+</div>
+</div>
+<!-- Bottlenecks & Critical Action -->
+<div class="glass-card rounded-2xl p-6 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-error">warning</span>
+<h3 class="font-title-md text-title-md text-on-surface">Active Bottlenecks</h3>
+</div>
+<div class="space-y-4">
+<!-- Issue 1 -->
+<div class="p-4 rounded-xl bg-error-container/20 border border-error/10 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-error font-bold">Pending Procurement</span>
+<span class="text-[10px] bg-error text-on-error px-2 py-0.5 rounded-full">Urgent</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Chipset components (Model X-2) delayed by supplier for 48h. Impacts 12 orders.</p>
+<button class="mt-2 text-primary font-bold text-[12px] flex items-center gap-1 hover:underline">
+                            Resolve Action <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<!-- Issue 2 -->
+<div class="p-4 rounded-xl bg-surface-container-high border border-outline-variant/30 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface font-bold">Assembly Delay</span>
+<span class="text-[10px] bg-on-surface-variant text-on-surface-variant-container px-2 py-0.5 rounded-full text-white">Minor</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Line 4 experiencing thermal sensor recalibration. 15min downtime expected.</p>
+<button class="mt-2 text-primary font-bold text-[12px] flex items-center gap-1 hover:underline">
+                            View Logs <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="rounded-xl bg-surface-variant p-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-white/50">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface">ORBIS Ops Advisor</span>
+<span class="text-[11px] text-on-surface-variant">Re-route shipments via Port B?</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom App Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-surface/90 backdrop-blur-lg flex items-center justify-around px-4 md:hidden z-50 border-t border-outline-variant/10">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">factory</span>
+<span class="text-[10px]">Ops</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px]">Stock</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px]">Report</span>
+</button>
+</nav>
+<!-- Floating Action Button -->
+<button class="fixed bottom-20 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<script>
+        // Micro-interaction: Update timestamp/live indicator
+        setInterval(() => {
+            const timeEl = document.querySelector('.live-sync-indicator');
+            if(timeEl) {
+                const now = new Date();
+                timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+        }, 1000);
+
+        // Simple animation for the SVG path on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const path = document.querySelector('path[stroke="#57344f"]');
+            if(path) {
+                const length = path.getTotalLength();
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+                path.getBoundingClientRect();
+                path.style.transition = 'stroke-dashoffset 2s ease-in-out';
+                path.style.strokeDashoffset = '0';
+            }
+        });
+    </script>
+</body></html>

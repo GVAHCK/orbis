@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 247, 249, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(209, 195, 202, 0.3);
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background: repeating-linear-gradient(to bottom, transparent, transparent 4px, #d1c3ca 4px, #d1c3ca 8px);
+        }
+        .timeline-item:last-child .timeline-line::before {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#34451e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f4ecee",
+                    "secondary-fixed": "#ffd7f1",
+                    "inverse-surface": "#342f31",
+                    "on-surface-variant": "#4e444a",
+                    "surface-variant": "#e9e0e3",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#714b67",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fff7f9",
+                    "surface-container-highest": "#e9e0e3",
+                    "tertiary-container": "#4b5d33",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#e0d8da",
+                    "background": "#fff7f9",
+                    "outline": "#80747a",
+                    "outline-variant": "#d1c3ca",
+                    "on-secondary-container": "#7b4f70",
+                    "secondary-fixed-dim": "#edb6dc",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#faf1f4",
+                    "primary": "#57344f",
+                    "secondary": "#7c5071",
+                    "surface-container-high": "#efe6e9",
+                    "on-tertiary-fixed": "#112000",
+                    "on-secondary-fixed": "#310e2b",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#b9ce9a",
+                    "on-tertiary-container": "#c0d5a0",
+                    "inverse-primary": "#e9b8d9",
+                    "surface-tint": "#79526f",
+                    "on-surface": "#1e1b1d",
+                    "on-primary-fixed-variant": "#5f3b56",
+                    "on-primary-container": "#f0bfe0",
+                    "primary-fixed": "#ffd7f1",
+                    "on-secondary-fixed-variant": "#623958",
+                    "inverse-on-surface": "#f7eef1",
+                    "primary-fixed-dim": "#e9b8d9",
+                    "on-tertiary-fixed-variant": "#3b4c24",
+                    "secondary-container": "#fec7ed",
+                    "surface": "#fff7f9",
+                    "on-background": "#1e1b1d",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#2f1029",
+                    "tertiary-fixed": "#d5eab4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-xl": "48px",
+                    "stack-sm": "8px",
+                    "gutter": "24px",
+                    "stack-xs": "4px",
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "stack-lg": "24px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "headline-xl-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-md": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- Top AppBar (Mobile View as requested) -->
+<header class="flex justify-between items-center h-16 px-gutter top-0 sticky z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant transition-all duration-200">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-lg text-headline-lg text-primary">Command Center</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow p-margin-mobile max-w-lg mx-auto w-full">
+<!-- Screen Title & Security Status -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface mb-stack-sm">Audit Log</h2>
+<div class="glass-card p-stack-md rounded-xl flex items-center justify-between border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-full flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface leading-tight">System Secure</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Last full scan: 12m ago</p>
+</div>
+</div>
+<button class="text-primary font-label-md text-label-md px-4 py-2 bg-secondary-fixed rounded-lg">Check</button>
+</div>
+</section>
+<!-- Filters (Compact) -->
+<section class="mb-stack-lg flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-label-md flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                All Events
+            </button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md shrink-0">Security</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md shrink-0">Manufacturing</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md shrink-0">HR</button>
+</section>
+<!-- Timeline Visualization -->
+<section class="space-y-stack-lg">
+<!-- Timeline Item 1: BOM Change -->
+<div class="timeline-item relative timeline-line">
+<div class="flex gap-4">
+<div class="relative z-10">
+<div class="w-10 h-10 rounded-full border-2 border-surface-container shadow-sm overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female executive in a modern tech office environment. She is wearing a soft charcoal blazer and has a confident, approachable expression. The background features blurred glass partitions and warm, natural sunlight with a premium FlowForge ERP aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2shUIINhw9Wbh-JH3Cx23dHW7oSewYwqmhke62w5gCH9nIFk-9Xis4LcwYk8bHJi7jX_C-rusdl2OONxmNIiiAoHIZb603WDt-Hx7KDHzBC7C7OFgCKoghT2bdgcoLorceRft4zuajlEf6pjboL2ljzJzGjUvLE4-K6u-Et-ZP04FYVw8VcVXp4ZGcCtdorPlgEZUpCGzHp7Ks-7BYONCrNSUTitXmhJX3Y_-DcEQ92RlEdl5cMbkq_VPbNpUfxZZE9ugI3oW9-g"/>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-stack-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Sarah Jenkins</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">Updated BOM: <span class="font-bold text-primary">Drone Engine X-1</span></p>
+<!-- Diff View Card -->
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-xl overflow-hidden mb-stack-md">
+<div class="flex items-center justify-between px-3 py-2 border-b border-outline-variant/20 bg-surface-container">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Changes (2)</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">expand_more</span>
+</div>
+<div class="p-3 space-y-2 font-label-md text-label-md">
+<div class="flex items-start gap-2">
+<span class="text-error mt-0.5 material-symbols-outlined text-xs">remove_circle</span>
+<div class="flex-grow">
+<span class="text-on-surface-variant line-through bg-error/10 px-1 rounded">Titanium Alloy Bolt (420g)</span>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<span class="text-tertiary mt-0.5 material-symbols-outlined text-xs">add_circle</span>
+<div class="flex-grow">
+<span class="text-on-surface bg-tertiary-fixed/40 px-1 rounded">Carbon Reinforced Screw (210g)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2: Security Alert -->
+<div class="timeline-item relative timeline-line">
+<div class="flex gap-4">
+<div class="relative z-10">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error border-2 border-surface-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">gpp_maybe</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-stack-xs">
+<h3 class="font-title-md text-title-md text-error">Security System</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">45m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-sm">Unauthorized login attempt blocked from <span class="font-bold">Shanghai, CN</span></p>
+<div class="flex gap-2">
+<button class="bg-error text-on-error px-3 py-1 rounded-lg font-label-sm text-label-sm">Lock IP</button>
+<button class="bg-surface-container-highest text-on-surface px-3 py-1 rounded-lg font-label-sm text-label-sm">Ignore</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3: Inventory Move -->
+<div class="timeline-item relative timeline-line">
+<div class="flex gap-4">
+<div class="relative z-10">
+<div class="w-10 h-10 rounded-full border-2 border-surface-container shadow-sm overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="A focused male warehouse manager wearing a blue polo shirt and a digital tablet in hand. He is standing in a clean, high-tech distribution center with organized industrial shelving and soft-blue accent lighting. The overall style is professional, corporate, and clean with high information clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKznULxt7OKKUAdMmV3wCyWWkR8CoRxAmem9pDrUrh6CbJsBDvnNZJ3aUAmTOZL9AR8Ox06qG2dn2OyZiUDfc6IUS-NcR15kZ1imYcif0Iq4SyluUnKN-wIVu8tBnefmtWV4THqk3Tj5YcU9Nu-0ueVPkcG2BLxz4zda3ZvW51-Mk1M22kbuYfwtWm_H3V0m73JeVu48HEJ2mfDtwQZ8Es0Ewb2Gj936pMs3Ih4Or423dLNLG4E4yIO7Q5WDRfhZgeE6OifzXmnfY"/>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-stack-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Markus Zhao</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Transferred <span class="font-bold text-primary">500 units</span> from WH-North to WH-East</p>
+<div class="mt-stack-sm flex items-center gap-4 py-2 px-3 bg-surface-container-low rounded-lg border border-outline-variant/20">
+<div class="text-center flex-1">
+<p class="text-[10px] text-on-surface-variant uppercase">Source</p>
+<p class="font-label-md text-on-surface">NORTH</p>
+</div>
+<span class="material-symbols-outlined text-primary">trending_flat</span>
+<div class="text-center flex-1">
+<p class="text-[10px] text-on-surface-variant uppercase">Dest</p>
+<p class="font-label-md text-on-surface">EAST</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 4: Procurement Approval -->
+<div class="timeline-item relative timeline-line">
+<div class="flex gap-4">
+<div class="relative z-10">
+<div class="w-10 h-10 rounded-full border-2 border-surface-container shadow-sm overflow-hidden bg-white">
+<img class="w-full h-full object-cover" data-alt="Close-up of a high-end corporate executive's hand digitally signing a procurement document on a sleek tablet. The lighting is crisp and cool, featuring reflections of a modern glass office. The atmosphere is professional, highlighting enterprise-level financial trust and efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1zsQuIgfSKN9bfg1b8LrLJsBfHLg5U2psv1kTvtUzkcUQo1IXTGDoDY_T3vXX3Z__rglON98DD72UaGmEDAzb8EX4JPI9OYlU3Z1gzXgvprtH9xV2WxFLQD7KMO27GUsQm_CfSbninEs4QkMAXNhjRlkwG9r6aF66PUdMcmQ_YvUV_Etebl8uPiE2KHt-mOHzGCVFhEJ5wWUxW6XrDxSVMISFbpbg6U3cxXppYGDzmWgTbiMFr50Sh_trZT0nxNfOx5E3y4bJCfk"/>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-stack-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Elena Rodriguez</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Approved PO-2024-0812 for <span class="font-bold text-tertiary-container">$42,500.00</span></p>
+<div class="mt-stack-sm flex items-center gap-2">
+<span class="bg-tertiary-fixed/20 text-tertiary px-2 py-0.5 rounded text-[10px] font-bold">FINANCE APPROVED</span>
+<span class="bg-secondary-fixed/20 text-secondary px-2 py-0.5 rounded text-[10px] font-bold">URGENT</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Load More State -->
+<div class="py-stack-xl flex flex-col items-center justify-center text-on-surface-variant">
+<button class="flex items-center gap-2 px-6 py-3 border border-outline-variant rounded-full font-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">history</span>
+                Load Historical Logs
+            </button>
+<p class="mt-stack-md text-[11px] opacity-60">Showing records from the last 24 hours</p>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="md:hidden grid grid-cols-5 h-16 bg-surface-container-low items-center border-t border-outline-variant/30 sticky bottom-0 z-50">
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium mt-0.5">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-[10px] font-medium mt-0.5">Sales</span>
+</button>
+<div class="flex flex-col items-center justify-center -mt-8">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-2xl">shield_with_heart</span>
+</button>
+</div>
+<button class="flex flex-col items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">list_alt</span>
+<span class="text-[10px] font-bold mt-0.5">Audit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium mt-0.5">Stats</span>
+</button>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('touchstart', () => {
+                item.style.transform = 'scale(0.99)';
+                item.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            item.addEventListener('touchend', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

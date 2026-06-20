@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Procurement Recommendations | FlowForge ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #131316; color: #e4e1e6; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(31, 31, 34, 0.7); backdrop-filter: blur(12px); border: 1px solid #3F3F46; }
+        .glow-primary { box-shadow: 0 0 15px rgba(163, 125, 160, 0.3); }
+        .glow-error { box-shadow: 0 0 10px rgba(255, 180, 171, 0.2); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #131316; }
+        ::-webkit-scrollbar-thumb { background: #353438; border-radius: 10px; }
+        @keyframes pulse-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .animate-pulse-slow { animation: pulse-slow 3s infinite ease-in-out; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#161f00",
+                        "on-surface": "#e4e1e6",
+                        "on-secondary-fixed": "#1b1b22",
+                        "surface-bright": "#39393c",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#dbe9ae",
+                        "on-tertiary-container": "#232d05",
+                        "surface": "#131316",
+                        "tertiary-fixed-dim": "#bfcd94",
+                        "on-primary-fixed": "#2c112d",
+                        "primary": "#e4b9df",
+                        "surface-container-high": "#2a2a2d",
+                        "on-tertiary": "#2a340b",
+                        "on-tertiary-fixed-variant": "#404b1f",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e4e1e6",
+                        "primary-container": "#ab84a8",
+                        "on-secondary": "#303038",
+                        "surface-container-lowest": "#0e0e11",
+                        "secondary": "#c7c5d0",
+                        "secondary-fixed": "#e4e1ec",
+                        "surface-tint": "#e4b9df",
+                        "surface-container-low": "#1b1b1e",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#d0c3cb",
+                        "primary-fixed": "#ffd6fa",
+                        "on-secondary-fixed-variant": "#46464e",
+                        "on-secondary-container": "#b9b7c1",
+                        "secondary-container": "#494851",
+                        "tertiary": "#bfcd94",
+                        "background": "#131316",
+                        "surface-variant": "#353438",
+                        "on-primary-fixed-variant": "#5c3c5b",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#e4b9df",
+                        "inverse-on-surface": "#303033",
+                        "inverse-primary": "#755374",
+                        "surface-container": "#1f1f22",
+                        "outline": "#998e95",
+                        "tertiary-container": "#899663",
+                        "on-background": "#e4e1e6",
+                        "surface-container-highest": "#353438",
+                        "on-primary-container": "#3c1f3c",
+                        "outline-variant": "#4d444b",
+                        "secondary-fixed-dim": "#c7c5d0",
+                        "on-primary": "#442643",
+                        "surface-dim": "#131316"
+                    },
+                    "spacing": {
+                        "xl": "40px", "unit": "4px", "gutter": "16px", "md": "16px", "sm": "8px", "xs": "4px", "lg": "24px", "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"], "body-md": ["Inter"], "label-md": ["Inter"], "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex overflow-hidden h-screen">
+<!-- NavigationDrawer Shell -->
+<aside class="fixed h-full left-0 top-0 w-[240px] flex flex-col bg-surface-container border-r border-outline-variant z-50">
+<div class="px-lg py-xl">
+<span class="text-title-md font-title-md font-bold text-primary">FlowForge ERP</span>
+</div>
+<div class="flex-1 px-md flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-body-md font-body-md">Sales</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-body-md font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">factory</span>
+<span class="text-body-md font-body-md">Manufacturing</span>
+</a>
+<!-- Active State: Procurement -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="text-body-md font-body-md">Procurement</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-body-md font-body-md">Analytics</span>
+</a>
+</div>
+<div class="p-md mt-auto border-t border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<img class="w-full h-full rounded-full object-cover" data-alt="Close up professional headshot of Alex Morgan, a male operations manager in his 40s with a confident expression, wearing a minimalist dark gray tech-fabric shirt. The background is a blurred high-tech logistics control room with deep purple and charcoal lighting, matching a sophisticated corporate dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDplhsOQw_viodRtrmSfAJ8uuIAORtjOVwthblDOyeYbxMcY-_2dszbVQUHyv1yo8isgj-NNfqgnTKudg_g_yhciU-j7r7BI39inxDExytU4iugIbvWr03YqJA3Hco8HEzqGNE01oUTidQYCRjOVUfBoJjJldT5P0z-6w62TZMvQRgjBFpDWJKs9mCCDENMOEYMXR1Fq8d-qLLi0GfIrPCNeQypzB3fmsmsS-lgDeuBIuMN5KG_gB-i9j_d4KB6MkEE_Ylmtlu1_JU"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-body-md font-bold truncate">Alex Morgan</p>
+<p class="text-label-md font-label-md text-on-surface-variant truncate">Operations Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-[240px] flex flex-col h-full bg-background overflow-y-auto">
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center w-full px-lg py-md sticky top-0 z-40 bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant">
+<h1 class="text-headline-lg font-headline-lg font-black text-on-surface">Command Center</h1>
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-container-highest transition-opacity rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="bg-primary text-on-primary-fixed px-lg py-sm rounded-lg text-label-md font-label-md font-bold hover:opacity-90 transition-all active:scale-[0.98]">
+                    Quick Action
+                </button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-lg max-w-[1400px] mx-auto w-full grid grid-cols-12 gap-lg">
+<!-- AI Header Section -->
+<section class="col-span-12 glass-card rounded-xl p-lg relative overflow-hidden flex flex-col md:flex-row items-center gap-lg">
+
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-sm mb-sm text-primary">
+<span class="material-symbols-outlined animate-pulse-slow">auto_awesome</span>
+<span class="text-label-md font-label-md uppercase tracking-widest">Predictive Intelligence Active</span>
+</div>
+<h2 class="text-headline-lg font-headline-lg mb-xs">Procurement Recommendations</h2>
+<p class="text-on-surface-variant max-w-2xl">AI analyzed 2.4k data points including supplier lead times, market fluctuations, and internal burn rates to generate 4 high-priority replenishment alerts.</p>
+</div>
+<div class="relative z-10 flex gap-md">
+<div class="text-center bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant">
+<p class="text-label-md font-label-md text-on-surface-variant">Savings Opp.</p>
+<p class="text-title-md font-title-md text-tertiary">$12,450</p>
+</div>
+<div class="text-center bg-surface-container-low px-md py-sm rounded-lg border border-outline-variant">
+<p class="text-label-md font-label-md text-on-surface-variant">Risk Level</p>
+<p class="text-title-md font-title-md text-error">Moderate</p>
+</div>
+</div>
+</section>
+<!-- Stock Shortage Alerts (Bento Style) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<h3 class="text-title-md font-title-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-error">report_problem</span>
+                    Shortage Alerts &amp; PO Suggestions
+                </h3>
+<!-- Card 1 -->
+<div class="glass-card rounded-xl p-md flex flex-col gap-md border-l-4 border-l-error">
+<div class="flex justify-between items-start">
+<div class="flex gap-md">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-resolution industrial close-up of precision-engineered titanium mechanical components with a dark, polished metallic finish. Soft purple rim lighting highlights the intricate gears and metallic textures, set against a deep charcoal background to maintain a professional dark mode ERP aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxDwA3i-yu3zRNKJhcA-_uJ7fGRpD5jNrpUv1O6w-70wRx4IRqVNNL_-OjjrL0xTsjh-1QP9mdslfaHEEXlnbun_FipFUe8d9faHyLltQf2jJuiinVwAr3Waf_KNf_irscM-ipfI3s5ioNSxUZ3VTFrAVwJ_WvyrLgiPFmoe2UHzJNITs8ZaLptg-PJSwoWhdEBo6jiuFb_ODp4qY16yGUKGC0vTl_UWBgUhV7ZBnnVDR6d9u0sbbup-LuKv6Bbqa-iNDZR6dUK6c"/>
+</div>
+<div>
+<h4 class="text-body-lg font-bold">Titanium Alloy Housing - Unit A4</h4>
+<p class="text-label-md text-on-surface-variant">ID: PR-0092 • Category: Heavy Metals</p>
+<div class="flex items-center gap-xs mt-xs">
+<span class="px-sm py-[2px] bg-error-container text-on-error-container text-[10px] rounded uppercase font-bold">Critical Shortage</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Est. Stockout: <span class="text-error font-bold">48 hours</span></span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary-container px-md py-sm rounded-lg text-label-md font-bold glow-primary transition-all hover:brightness-110 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_mode</span>
+                            Automate PO
+                        </button>
+</div>
+<div class="grid grid-cols-3 gap-md border-t border-outline-variant pt-md">
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Suggested Qty</p>
+<p class="text-body-md font-bold">450 Units</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Recommended Vendor</p>
+<p class="text-body-md font-bold flex items-center gap-xs">MetalsCorp <span class="material-symbols-outlined text-tertiary text-[14px]">verified</span></p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Est. Cost</p>
+<p class="text-body-md font-bold">$28,400.00</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl p-md flex flex-col gap-md border-l-4 border-l-primary">
+<div class="flex justify-between items-start">
+<div class="flex gap-md">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio photograph of a stack of advanced high-density polymer sheets, glowing slightly with a translucent edge under professional blue and violet industrial lighting. The texture is smooth and futuristic, presented on a dark, reflective surface in a high-end corporate ERP environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5iAanFTw_WWiZyfF2e1YXRjMq9ERWqFpnOU0mt_2KAkO-PEWovACb0fUlaD4DP2SYKdvrzOyzlmeauT_ihxuLCxSeIHqCAR64SP2kGp-VA28WfBheiqZKW78zID7jKLgU1UFZJbuaC5YvQDCKNmEPjEcS9ehZviwITxsldNHIXGmg7eggDiWVLpPhxUKQKQht9Tj1FjfLtue2c52qLJkuWjJ_2zsXmVNWkc5Yoo5uB1mqjaywDyKxoZHn_O8xMfY8TlHHZXmIPLg"/>
+</div>
+<div>
+<h4 class="text-body-lg font-bold">High-Density Polymer (HDP-8)</h4>
+<p class="text-label-md text-on-surface-variant">ID: PR-0115 • Category: Polymers</p>
+<div class="flex items-center gap-xs mt-xs">
+<span class="px-sm py-[2px] bg-primary-container text-on-primary-container text-[10px] rounded uppercase font-bold">Optimization Alert</span>
+<span class="text-label-md font-label-md text-on-surface-variant">Bulk Discount Triggered: <span class="text-primary font-bold">15% Off</span></span>
+</div>
+</div>
+</div>
+<button class="bg-primary text-on-primary-container px-md py-sm rounded-lg text-label-md font-bold glow-primary transition-all hover:brightness-110 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">auto_mode</span>
+                            Automate PO
+                        </button>
+</div>
+<div class="grid grid-cols-3 gap-md border-t border-outline-variant pt-md">
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Suggested Qty</p>
+<p class="text-body-md font-bold">1,200kg</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Recommended Vendor</p>
+<p class="text-body-md font-bold flex items-center gap-xs">PolySource Global <span class="material-symbols-outlined text-tertiary text-[14px]">verified</span></p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-on-surface-variant font-bold">Est. Cost</p>
+<p class="text-body-md font-bold">$14,200.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Sidebar: Pricing Comparison & Queue -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Pricing Comparison Chart Mockup -->
+<section class="glass-card rounded-xl p-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="text-label-md font-bold uppercase tracking-wider">Vendor Optimization</h3>
+<span class="material-symbols-outlined text-primary text-[20px]">leaderboard</span>
+</div>
+<div class="space-y-md">
+<p class="text-label-md text-on-surface-variant">Price Comparison: MetalsCorp vs. Priority</p>
+<div class="space-y-sm">
+<div class="flex justify-between items-end text-label-md">
+<span>MetalsCorp (Best Price)</span>
+<span class="text-tertiary">$63.11 / unit</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[70%]"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-end text-label-md">
+<span>Priority Source (Lead Time)</span>
+<span class="text-primary-container">$74.50 / unit</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[95%] shadow-[0_0_8px_rgba(171,132,168,0.5)]"></div>
+</div>
+</div>
+<div class="mt-lg pt-md border-t border-outline-variant">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<p class="text-[11px] text-on-surface-variant leading-tight">Priority Source offers 24-hour delivery but at a 18% price premium. Recommended only for critical outages.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Queue & Backlog -->
+<section class="glass-card rounded-xl overflow-hidden flex flex-col h-[400px]">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="text-label-md font-bold uppercase tracking-wider">Queue &amp; Backlog</h3>
+<span class="bg-surface-container-highest text-[10px] px-sm py-[2px] rounded font-bold">12 Active</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Queue Item 1 -->
+<div class="p-md hover:bg-surface-container-high transition-colors border-b border-outline-variant/30 flex items-center justify-between cursor-pointer">
+<div>
+<p class="text-body-md font-bold">PO-88219 Pending</p>
+<p class="text-[11px] text-on-surface-variant">Requested by: Sarah J. • 12m ago</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Queue Item 2 -->
+<div class="p-md hover:bg-surface-container-high transition-colors border-b border-outline-variant/30 flex items-center justify-between cursor-pointer">
+<div>
+<p class="text-body-md font-bold">Requisition #9901</p>
+<p class="text-[11px] text-on-surface-variant">Requested by: AI-Agent • 45m ago</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Queue Item 3 -->
+<div class="p-md hover:bg-surface-container-high transition-colors border-b border-outline-variant/30 flex items-center justify-between cursor-pointer opacity-50">
+<div>
+<p class="text-body-md font-bold">PO-88215 Draft</p>
+<p class="text-[11px] text-on-surface-variant">Last edited 2h ago</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Queue Item 4 -->
+<div class="p-md hover:bg-surface-container-high transition-colors border-b border-outline-variant/30 flex items-center justify-between cursor-pointer opacity-50">
+<div>
+<p class="text-body-md font-bold">PO-88210 Draft</p>
+<p class="text-[11px] text-on-surface-variant">Last edited 5h ago</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer / System Status -->
+<footer class="mt-auto p-lg border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-label-md text-on-surface-variant">Oracle Cloud Sync: OK</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-label-md text-on-surface-variant">AI Latency: 22ms</span>
+</div>
+</div>
+<p class="text-label-md text-on-surface-variant/50">FlowForge ERP v4.2.1-stable</p>
+</footer>
+</main>
+<!-- Interactions Script -->
+<script>
+        // Simple hover effect for "Automate PO" buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+
+        // Simulating AI updating
+        setInterval(() => {
+            const savings = document.querySelector('.text-tertiary');
+            if(savings && savings.innerText.includes('$12,450')) {
+                let current = 12450;
+                let next = current + Math.floor(Math.random() * 10);
+                savings.innerText = `$${next.toLocaleString()}`;
+            }
+        }, 5000);
+    </script>
+</body></html>
